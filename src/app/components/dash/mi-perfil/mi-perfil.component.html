@@ -1,0 +1,365 @@
+<div class="dashboard-content-container" data-simplebar>
+  <div class="dashboard-content-inner">
+    <!-- Dashboard Headline -->
+    <div class="dashboard-headline">
+      <h3>Mi información</h3>
+
+      <!-- Breadcrumbs -->
+      <nav id="breadcrumbs" class="dark">
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Dashboard</a></li>
+          <li>Settings</li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- Row -->
+    <div class="row">
+      <!-- Dashboard Box -->
+      <div class="col-xl-12">
+        <div class="dashboard-box margin-top-0">
+          <!-- Headline -->
+          <div class="headline">
+            <h3><i class="fas fa-user"></i> Mi cuenta</h3>
+          </div>
+
+          <div class="content with-padding padding-bottom-0">
+            <div class="row">
+              <div class="col-auto">
+                <div
+                  class="avatar-wrapper"
+                  data-tippy-placement="bottom"
+                  title="Cambiar foto de perfil"
+                >
+                  <img
+                    class="profile-pic"
+                    src="{{ this.doctor.foto }}"
+                    alt=""
+                  />
+                  <div class="upload-button"></div>
+                  <input class="file-upload" type="file" accept="image/*" />
+                </div>
+              </div>
+
+              <div class="col">
+                <div class="row">
+                  <div class="col-xl-4">
+                    <div class="submit-field">
+                      <h5>Nombre</h5>
+                      <input type="text" class="with-border" />
+                    </div>
+                  </div>
+
+                  <div class="col-xl-4">
+                    <div class="submit-field">
+                      <h5>Primer Apellido</h5>
+                      <input type="text" class="with-border" />
+                    </div>
+                  </div>
+
+                  <div class="col-xl-4">
+                    <div class="submit-field">
+                      <h5>Segundo Apellido</h5>
+                      <input type="text" class="with-border" />
+                    </div>
+                  </div>
+
+                  <div class="col-xl-4">
+                    <div class="submit-field">
+                      <h5>Correo Electrónico</h5>
+                      <input type="email" class="with-border" />
+                    </div>
+                  </div>
+
+                  <div class="col-xl-4">
+                    <div class="submit-field">
+                      <h5>Celular</h5>
+                      <input type="text" class="with-border" />
+                    </div>
+                  </div>
+
+                  <div class="col-xl-4">
+                    <div class="submit-field">
+                      <h5>Telefono Oficina</h5>
+                      <input type="text" class="with-border" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-xl-3">
+                <div class="submit-field">
+                  <h5>Residencia</h5>
+                  <select
+                    class="selectpicker with-border"
+                    data-size="7"
+                    title="Elegir..."
+                    data-live-search="true"
+                  >
+                    <option value="San Jose">San Jose</option>
+                    <option value="Heredia">Heredia</option>
+                    <option value="Alajuela">Alajuela</option>
+                    <option value="Puntarenas">Puntarenas</option>
+                    <option value="Guanacaste">Guanacaste</option>
+                    <option value="Cartago">Cartago</option>
+                    <option value="Limón">Limón</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-xl-3">
+                <div class="submit-field">
+                  <h5>Página web</h5>
+                  <input type="text" class="with-border" />
+                </div>
+              </div>
+              <div class="col-xl-3">
+                <div class="submit-field">
+                  <h5>Fecha Nacimiento</h5>
+                  <input type="text" class="with-border" />
+                </div>
+              </div>
+              <div class="col-xl-3">
+                <div class="submit-field">
+                  <h5>Genero</h5>
+                  <input type="text" class="with-border" />
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-xl-12">
+                <div class="submit-field">
+                  <h5>Sobre Mi</h5>
+                  <textarea cols="30" rows="5" class="with-border"></textarea>
+                </div>
+              </div>
+            </div>
+            <hr />
+            <div class="col-xl-12">
+              <a href="#" class="button ripple-effect big margin-top-30"
+                >Guardar cambios</a
+              >
+            </div>
+            <br />
+          </div>
+        </div>
+      </div>
+
+      <!-- Dashboard Box -->
+      <div class="col-xl-12">
+        <div class="dashboard-box">
+          <!-- Headline -->
+          <div class="headline">
+            <h3><i class="fas fa-address-card"></i> Información Personal</h3>
+          </div>
+
+          <div class="content">
+            <ul class="fields-ul">
+              <li>
+                <div class="row">
+                  <div class="col-xl-6">
+                    <div class="submit-field">
+                      <h5>Titulo</h5>
+                      <input type="text" class="with-border" />
+                    </div>
+                  </div>
+
+                  <div class="col-xl-6">
+                    <div class="submit-field">
+                      <h5>Residencia</h5>
+                      <select
+                        class="selectpicker with-border"
+                        data-size="7"
+                        title="Elegir..."
+                        data-live-search="true"
+                      >
+                        <option value="San Jose">San Jose</option>
+                        <option value="Heredia">Heredia</option>
+                        <option value="Alajuela">Alajuela</option>
+                        <option value="Puntarenas">Puntarenas</option>
+                        <option value="Guanacaste">Guanacaste</option>
+                        <option value="Cartago">Cartago</option>
+                        <option value="Limón">Limón</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="col-xl-12">
+                    <div class="submit-field">
+                      <h5>Presentación</h5>
+                      <textarea
+                        cols="30"
+                        rows="5"
+                        class="with-border"
+                      ></textarea>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dashboard Box -->
+      <div class="col-xl-12">
+        <div class="dashboard-box">
+          <!-- Headline -->
+          <div class="headline">
+            <h3><i class="fas fa-school"></i> Estudios Académicos</h3>
+          </div>
+
+          <div class="content">
+            <ul class="fields-ul">
+              <li>
+                <div class="row">
+                  <div class="col-xl-6">
+                    <div class="submit-field">
+                      <h5>Titulo</h5>
+                      <input type="text" class="with-border" />
+                    </div>
+                  </div>
+
+                  <div class="col-xl-6">
+                    <div class="submit-field">
+                      <h5>Residencia</h5>
+                      <select
+                        class="selectpicker with-border"
+                        data-size="7"
+                        title="Elegir..."
+                        data-live-search="true"
+                      >
+                        <option value="San Jose">San Jose</option>
+                        <option value="Heredia">Heredia</option>
+                        <option value="Alajuela">Alajuela</option>
+                        <option value="Puntarenas">Puntarenas</option>
+                        <option value="Guanacaste">Guanacaste</option>
+                        <option value="Cartago">Cartago</option>
+                        <option value="Limón">Limón</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="col-xl-12">
+                    <div class="submit-field">
+                      <h5>Presentación</h5>
+                      <textarea
+                        cols="30"
+                        rows="5"
+                        class="with-border"
+                      ></textarea>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dashboard Box -->
+      <div class="col-xl-12">
+        <div class="dashboard-box">
+          <!-- Headline -->
+          <div class="headline">
+            <h3><i class="fas fa-briefcase"></i> Experiencia Profesional</h3>
+          </div>
+
+          <div class="content">
+            <ul class="fields-ul">
+              <li>
+                <div class="row">
+                  <div class="col-xl-6">
+                    <div class="submit-field">
+                      <h5>Titulo</h5>
+                      <input type="text" class="with-border" />
+                    </div>
+                  </div>
+
+                  <div class="col-xl-6">
+                    <div class="submit-field">
+                      <h5>Residencia</h5>
+                      <select
+                        class="selectpicker with-border"
+                        data-size="7"
+                        title="Elegir..."
+                        data-live-search="true"
+                      >
+                        <option value="San Jose">San Jose</option>
+                        <option value="Heredia">Heredia</option>
+                        <option value="Alajuela">Alajuela</option>
+                        <option value="Puntarenas">Puntarenas</option>
+                        <option value="Guanacaste">Guanacaste</option>
+                        <option value="Cartago">Cartago</option>
+                        <option value="Limón">Limón</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="col-xl-12">
+                    <div class="submit-field">
+                      <h5>Presentación</h5>
+                      <textarea
+                        cols="30"
+                        rows="5"
+                        class="with-border"
+                      ></textarea>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dashboard Box -->
+      <div class="col-xl-12">
+        <div id="test1" class="dashboard-box">
+          <!-- Headline -->
+          <div class="headline">
+            <h3><i class="fas fa-lock"></i> Seguridad de la cuenta</h3>
+          </div>
+
+          <div class="content with-padding">
+            <div class="row">
+              <div class="col-xl-4">
+                <div class="submit-field">
+                  <h5>Contraseña Actual</h5>
+                  <input type="password" class="with-border" />
+                </div>
+              </div>
+
+              <div class="col-xl-4">
+                <div class="submit-field">
+                  <h5>Nueva Contraseña</h5>
+                  <input type="password" class="with-border" />
+                </div>
+              </div>
+
+              <div class="col-xl-4">
+                <div class="submit-field">
+                  <h5>Repetir Contraseña</h5>
+                  <input type="password" class="with-border" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Button -->
+      <div class="col-xl-12">
+        <a href="#" class="button ripple-effect big margin-top-30"
+          >Guardar cambios</a
+        >
+      </div>
+    </div>
+    <!-- Row / End -->
+    <app-dashboardfooter></app-dashboardfooter>
+  </div>
+  <!-- Dashboard Content / End -->
+</div>

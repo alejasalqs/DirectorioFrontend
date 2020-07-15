@@ -1,0 +1,110 @@
+<!-- Header Container
+================================================== -->
+<header id="header-container" class="fullwidth">
+  <!-- Header -->
+  <div id="header">
+    <div class="container">
+      <!-- Left Side Content -->
+      <div class="left-side">
+        <!-- Logo -->
+        <div id="logo">
+          <a [routerLink]="['/index']"
+            ><img
+              src="../../../../assets/img/logo-grupo-argus-productos.png"
+              alt="Logo de la empresa"
+          /></a>
+        </div>
+
+        <!-- Main Navigation -->
+        <nav id="navigation">
+          <ul id="responsive" *ngIf="!this.auth.loggedIn()">
+            <li>
+              <a [routerLink]="['/index']">Inicio</a>
+            </li>
+          </ul>
+        </nav>
+        <div class="clearfix"></div>
+        <!-- Main Navigation / End -->
+      </div>
+      <!-- Left Side Content / End -->
+
+      <!-- Right Side Content / End -->
+      <div class="right-side">
+        <!--  User Notifications -->
+        <div
+          class="header-widget"
+          style="padding-top: 20px;"
+          *ngIf="!this.auth.loggedIn()"
+        >
+          <a [routerLink]="['/login']" class="button ripple-effect"
+            >Iniciar sesión</a
+          >
+        </div>
+        <!--  User Notifications / End -->
+
+        <!-- User Menu -->
+        <div class="header-widget" *ngIf="this.auth.loggedIn()">
+          <!-- Messages -->
+          <div class="header-notifications user-menu">
+            <div class="header-notifications-trigger">
+              <a
+                ><div class="user-avatar status-online">
+                  <img src="{{ this.auth.decodedToken.actort }}" alt="" /></div
+              ></a>
+            </div>
+
+            <!-- Dropdown -->
+            <div class="header-notifications-dropdown">
+              <!-- User Status -->
+              <div class="user-status">
+                <!-- User Name / Avatar -->
+                <div class="user-details">
+                  <div class="user-avatar status-online">
+                    <img src="{{ this.auth.decodedToken.actort }}" alt="" />
+                  </div>
+                  <div class="user-name">
+                    {{ this.auth.decodedToken.unique_name }} <span>Doctor</span>
+                  </div>
+                </div>
+
+                <!-- User Status Switcher -->
+                <div class="status-switch" id="snackbar-user-status">
+                  <label class="user-online current-status">Online</label>
+                  <label class="user-invisible">Invisible</label>
+                  <!-- Status Indicator -->
+                  <span class="status-indicator" aria-hidden="true"></span>
+                </div>
+              </div>
+
+              <ul class="user-menu-small-nav">
+                <li [routerLink]="['/dashboard']">
+                  <a><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                </li>
+                <li>
+                  <a><i class="fas fa-cogs"></i> Settings</a>
+                </li>
+                <li (click)="logout()">
+                  <a><i class="fas fa-power-off"></i> Logout</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- User Menu / End -->
+
+        <!-- Mobile Navigation Button -->
+        <span class="mmenu-trigger">
+          <button class="hamburger hamburger--collapse" type="button">
+            <span class="hamburger-box">
+              <span class="hamburger-inner"></span>
+            </span>
+          </button>
+        </span>
+      </div>
+      <!-- Right Side Content / End -->
+    </div>
+  </div>
+  <!-- Header / End -->
+</header>
+<div class="clearfix"></div>
+<!-- Header Container / End -->

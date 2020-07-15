@@ -1,0 +1,15 @@
+<div id="wrapper">
+  <app-navbar></app-navbar>
+  <div class="dashboard-container">
+    <app-sidebar></app-sidebar>
+    <!-- Dashboard Content
+	================================================== -->
+    <div class="dashboard-content-container" data-simplebar>
+      <div class="dashboard-content-inner">
+        <router-outlet></router-outlet>
+        <app-dashboardfooter></app-dashboardfooter>
+      </div>
+      <!-- Dashboard Content / End -->
+    </div>
+  </div>
+</div>

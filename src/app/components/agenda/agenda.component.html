@@ -1,0 +1,24 @@
+<button class="button ripple-effect" (click)="toggleVisible()">
+  Mostrar Calendario
+</button>
+<br />
+<br />
+<button class="button ripple-effect" (click)="toggleWeekends()">
+  Mostrar fines de semana
+</button>
+<br />
+<hr />
+<full-calendar
+  *ngIf="calendarVisible"
+  defaultView="dayGridMonth"
+  [plugins]="calendarPlugins"
+  [weekends]="calendarWeekends"
+  [events]="calendarEvents"
+  deepChangeDetection="true"
+  [header]="{
+    left: 'prev,next today',
+    center: 'title',
+    right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+  }"
+  (dateClick)="handleDateClick($event)"
+></full-calendar>

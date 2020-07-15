@@ -1,0 +1,180 @@
+<app-navbar></app-navbar>
+<br />
+<!-- Spacer -->
+<div class="margin-top-90"></div>
+<!-- Spacer / End-->
+
+<!-- Page Content
+================================================== -->
+<div class="container">
+  <div class="row">
+    <div class="col-xl-3 col-lg-4">
+      <h3>Filtrar:</h3>
+      <br />
+      <div class="sidebar-container">
+        <!-- Location -->
+        <div class="sidebar-widget">
+          <h3>Locación</h3>
+          <div class="input-with-icon">
+            <div id="autocomplete-container">
+              <input
+                id="locacion"
+                type="text"
+                placeholder="San José, Heredia, Limón ..."
+              />
+            </div>
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+        </div>
+
+        <div class="sidebar-widget">
+          <h3>Especialidad</h3>
+          <div class="input-with-icon">
+            <div id="autocomplete-container">
+              <input
+                id="especialidad"
+                type="text"
+                placeholder="Odontología, Ginecología ..."
+              />
+            </div>
+            <i class="fas fa-user-md"></i>
+          </div>
+        </div>
+
+        <!-- Keywords -->
+        <div class="sidebar-widget">
+          <h3>Genero</h3>
+          <div class="radio">
+            <input id="radio-1" name="radio" type="radio" checked="" />
+            <label for="radio-1"
+              ><span class="radio-label"></span> Hombre</label
+            >
+          </div>
+
+          <br />
+
+          <div class="radio">
+            <input id="radio-2" name="radio" type="radio" />
+            <label for="radio-2"><span class="radio-label"></span> Mujer</label>
+          </div>
+        </div>
+
+        <div class="sidebar-widget">
+          <a href="#" class="button button-sliding-icon ripple-effect"
+            >Aplicar Filtros <i class="fas fa-search"></i
+          ></a>
+        </div>
+
+        <div class="clearfix"></div>
+      </div>
+    </div>
+    <div class="col-xl-9 col-lg-8 content-left-offset">
+      <h3 class="page-title">
+        Resultados de la búsqueda:
+        <small>{{ this.termino }}</small>
+      </h3>
+
+      <div class="notify-box margin-top-15">
+        <div class="sort-by">
+          <span>Ordenar por:</span>
+          <select class="selectpicker">
+            <option>Relevance</option>
+            <option>Newest</option>
+            <option>Oldest</option>
+            <option>Random</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Freelancers List Container -->
+      <div class="freelancers-container freelancers-list-layout margin-top-35">
+        <!--Freelancer -->
+        <div class="freelancer" *ngFor="let doctor of doctores">
+          <!-- Overview -->
+          <div class="freelancer-overview">
+            <div class="freelancer-overview-inner">
+              <!-- Bookmark Icon -->
+              <span class="bookmark-icon"></span>
+
+              <!-- Avatar -->
+              <div class="freelancer-avatar">
+                <a [routerLink]="['/doctor', doctor.IdDoctor]"
+                  ><img src="{{ doctor.foto }}" alt=""
+                /></a>
+              </div>
+
+              <!-- Name -->
+              <div class="freelancer-name">
+                <h4>
+                  <a href="#"
+                    >{{
+                      doctor.Nombre +
+                        " " +
+                        doctor.PrimerApellido +
+                        " " +
+                        doctor.SegundoApellido
+                    }}
+                    <img
+                      class="flag"
+                      src=""
+                      alt=""
+                      title="United Kingdom"
+                      data-tippy-placement="top"
+                  /></a>
+                </h4>
+                <span>{{ doctor.Especialidades[0].descripcion }}</span>
+                <!-- Rating -->
+                <div class="freelancer-rating">
+                  <div class="star-rating" data-rating="4.9"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Details -->
+          <div class="freelancer-details">
+            <div class="freelancer-details-list">
+              <ul>
+                <li>
+                  Location
+                  <strong> London</strong>
+                </li>
+                <li>Rate <strong>$60 / hr</strong></li>
+                <li>Job Success <strong>95%</strong></li>
+              </ul>
+            </div>
+            <a
+              [routerLink]="['/doctor', doctor.IdDoctor]"
+              class="button button-sliding-icon ripple-effect"
+              >Ver perfil <i class="fas fa-arrow-right"></i
+            ></a>
+          </div>
+        </div>
+        <!-- Freelancer / End -->
+      </div>
+      <!-- Tasks Container / End -->
+
+      <!-- Pagination -->
+      <div class="clearfix"></div>
+      <!--<div class="row justify-content-center text-center">
+        <div class="col-md-12">
+          <div class="pagination-container margin-top-40 margin-bottom-60">
+            <pagination
+              [boundaryLinks]="true"
+              [totalItems]="pagination.itemsTotales"
+              [itemsPerPage]="pagination.itemsPorPagina"
+              [(ngModel)]="pagination.paginaActual"
+              (pageChanged)="pageChanged($event)"
+              previousText="&lsaquo;"
+              nextText="&rsaquo;"
+              firstText="&laquo;"
+              lastText="&raquo;"
+            >
+            </pagination>
+          </div>
+        </div>
+      </div>-->
+      <!-- Pagination / End -->
+    </div>
+  </div>
+</div>
