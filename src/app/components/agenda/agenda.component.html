@@ -1,24 +1,119 @@
-<button class="button ripple-effect" (click)="toggleVisible()">
-  Mostrar Calendario
-</button>
-<br />
-<br />
-<button class="button ripple-effect" (click)="toggleWeekends()">
-  Mostrar fines de semana
-</button>
-<br />
-<hr />
-<full-calendar
-  *ngIf="calendarVisible"
-  defaultView="dayGridMonth"
-  [plugins]="calendarPlugins"
-  [weekends]="calendarWeekends"
-  [events]="calendarEvents"
-  deepChangeDetection="true"
-  [header]="{
-    left: 'prev,next today',
-    center: 'title',
-    right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
-  }"
-  (dateClick)="handleDateClick($event)"
-></full-calendar>
+<div class="dashboard-content-container" data-simplebar>
+  <div class="dashboard-content-inner">
+    <!-- Dashboard Headline -->
+    <div class="dashboard-headline">
+      <h3>Configuración agenda</h3>
+
+      <!-- Breadcrumbs -->
+      <nav id="breadcrumbs" class="dark">
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Dashboard</a></li>
+          <li>Settings</li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- Dashboard Box -->
+    <div class="col-xl-12">
+      <div id="test1" class="dashboard-box">
+        <!-- Headline -->
+        <div class="headline">
+          <h3><i class="fas fa-lock"></i> Agenda</h3>
+        </div>
+        <button class="button ripple-effect" (click)="toggleVisible()">
+          Mostrar Calendario
+        </button>
+        <br />
+        <br />
+        <button class="button ripple-effect" (click)="toggleWeekends()">
+          Mostrar fines de semana
+        </button>
+        <br />
+        <hr />
+        <div class="content with-padding">
+          <full-calendar style="height: 300px;"
+          *ngIf="calendarVisible"
+          [timeZone]= 'UTC'
+          [defaultView]="dayGridMonth"
+          [plugins]="calendarPlugins"
+          [weekends]="calendarWeekends"
+          [events]="calendarEvents"
+          [deepChangeDetection]="true"
+          [header]="{
+            left: 'prev,next today',
+            center: 'title',
+            right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek,agendaWeek'
+          }"
+          (eventClick)="eventClick($event.event,template)"
+        ></full-calendar>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #template let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Agendar cita</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="row">
+        <div class="col-6">
+          <div class="form-group">
+            <label>Nombre:</label>
+            <div class="input-group">
+              <input id="NombreEvento" class="form-control" name="NombreEvento" [(ngModel)]="modelEvento.Nombre">
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group">
+            <label>Apellidos:</label>
+            <div class="input-group">
+              <input id="NombreEvento" class="form-control" name="NombreEvento" [(ngModel)]="modelEvento.Apellidos">
+            </div>
+          </div>
+        </div>  
+      </div>
+      <div class="row">
+        <div class="col">
+          <label>Cédula</label>
+          <div class="input-group">
+            <input id="backgroundColor" [(ngModel)]="modelEvento.Cedula" class="form-control" name="backgroundColor">
+          </div>
+        </div>
+        <div class="col">
+          <label>Correo electrónico</label>
+          <div class="input-group">
+            <input id="borderColor" class="form-control" [(ngModel)]="modelEvento.Correo" name="borderColor">
+          </div>
+        </div>
+        <div class="col">
+          <label>Teléfono</label>
+          <div class="input-group">
+            <input id="textColor" class="form-control" [(ngModel)]="modelEvento.Celular" name="textColor">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label>Motivo cita</label>
+          <div class="input-group">
+            <textarea id="textColor" class="form-control" [(ngModel)]="modelEvento.MotivoCita" name="textColor"></textarea>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-12">
+          <button class="btn btn-primary btn-block" (click)="agendar(modelEvento,modal,$event.event)">Agendar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</ng-template>

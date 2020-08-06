@@ -1,0 +1,121 @@
+<div class="dashboard-content-container" data-simplebar>
+    <div class="dashboard-content-inner">
+      <!-- Dashboard Headline -->
+      <div class="dashboard-headline">
+        <h3>Configuración agenda</h3>
+  
+        <!-- Breadcrumbs -->
+        <nav id="breadcrumbs" class="dark">
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Dashboard</a></li>
+            <li>Settings</li>
+          </ul>
+        </nav>
+      </div>
+
+      <!-- Dashboard Box -->
+      <div class="col-xl-12">
+        <div id="test1" class="dashboard-box">
+          <!-- Headline -->
+          <div class="headline">
+            <h3><i class="fas fa-lock"></i> Configurar Agenda</h3>
+          </div>
+
+          <div class="content with-padding">
+            <form #cambiarContraForm="ngForm" (ngSubmit)="cambiar()">
+              <div class="row">
+                <div class="col-xl-6">
+                  <div class="submit-field">
+                    <h5>Seleccionar días laborales</h5>
+                    <div>
+                        <div class="checkbox">
+                            <input type="checkbox" id="lunes" checked="">
+                            <label for="lunes"><span class="checkbox-icon"></span> Lunes</label>
+                        </div>
+                        <br>
+                        <div class="checkbox">
+                            <input type="checkbox" id="Martes" checked="">
+                            <label for="Martes"><span class="checkbox-icon"></span> Martes</label>
+                        </div>
+                        <br>
+                        <div class="checkbox">
+                            <input type="checkbox" id="Miercoles" checked="">
+                            <label for="Miercoles"><span class="checkbox-icon"></span> Miércoles</label>
+                        </div>
+                        <br>
+                        <div class="checkbox">
+                            <input type="checkbox" id="Jueves" checked="">
+                            <label for="Jueves"><span class="checkbox-icon"></span> Jueves</label>
+                        </div>
+                        <br>
+                        <div class="checkbox">
+                            <input type="checkbox" id="Viernes" checked="">
+                            <label for="Viernes"><span class="checkbox-icon"></span> Viernes</label>
+                        </div>
+                        <br>
+                        <div class="checkbox">
+                            <input type="checkbox" id="Sabado" checked="">
+                            <label for="Sabado"><span class="checkbox-icon"></span> Sábado</label>
+                        </div>
+                        <br>
+                        <div class="checkbox">
+                            <input type="checkbox" id="Domingo" checked="">
+                            <label for="Domingo"><span class="checkbox-icon"></span> Domingo</label>
+                        </div>
+
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="col-xl-6">
+                  <div class="submit-field">
+                    <h5>Cantidad de hora laborales (por día)</h5>
+                    <select class="form-control" id="exampleFormControlSelect1"
+                  >
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                  </select>
+                  </div>
+                  <br>
+                  <div class="submit-field">
+                    <h5>Hora de inicio</h5>
+                    <select class="form-control" id="exampleFormControlSelect1"
+                  >
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                  </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xl-12">
+                  <button href="#" class="button ripple-effect big margin-top-30">Cambiar contraseña</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

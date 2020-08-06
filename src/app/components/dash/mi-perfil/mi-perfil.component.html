@@ -27,19 +27,18 @@
           <div class="content with-padding padding-bottom-0">
             <div class="row">
               <div class="col-auto">
-                <div
-                  class="avatar-wrapper"
-                  data-tippy-placement="bottom"
-                  title="Cambiar foto de perfil"
-                >
-                  <img
-                    class="profile-pic"
-                    src="{{ this.doctor.foto }}"
-                    alt=""
-                  />
-                  <div class="upload-button"></div>
-                  <input class="file-upload" type="file" accept="image/*" />
+                <div class="file-field">
+                  <div class="mb-4">
+                    <img [src]="this.foto"
+                      class="rounded-circle z-depth-1-half avatar-pic" height="150" width="150" alt="example placeholder avatar">
+                  </div>
+                  <div class="d-flex justify-content-center">
+                    <div class="button ripple-effect">
+                      <input type="file" (change)="cambiarImg($event.target.files[0])">
+                    </div>
+                  </div>
                 </div>
+                <button class="btn btn-primary btn-block" [disabled]="!imagenSubir" (click)="subirImagen()">Subir Imagen</button>
               </div>
 
               <div class="col">
@@ -47,57 +46,53 @@
                   <div class="col-xl-4">
                     <div class="submit-field">
                       <h5>Nombre</h5>
-                      <input type="text" class="with-border" />
+                      <input type="text" class="with-border"  [(ngModel)]="doctor.Nombre"/>
                     </div>
                   </div>
 
                   <div class="col-xl-4">
                     <div class="submit-field">
                       <h5>Primer Apellido</h5>
-                      <input type="text" class="with-border" />
+                      <input type="text" class="with-border" [(ngModel)]="doctor.PrimerApellido"/>
                     </div>
                   </div>
 
                   <div class="col-xl-4">
                     <div class="submit-field">
                       <h5>Segundo Apellido</h5>
-                      <input type="text" class="with-border" />
+                      <input type="text" class="with-border" [(ngModel)]="doctor.SegundoApellido"/>
                     </div>
                   </div>
 
                   <div class="col-xl-4">
                     <div class="submit-field">
                       <h5>Correo Electrónico</h5>
-                      <input type="email" class="with-border" />
+                      <input type="email" class="with-border" [(ngModel)]="doctor.Correo"/>
                     </div>
                   </div>
 
                   <div class="col-xl-4">
                     <div class="submit-field">
                       <h5>Celular</h5>
-                      <input type="text" class="with-border" />
+                      <input type="text" class="with-border" [(ngModel)]="doctor.Celular"/>
                     </div>
                   </div>
 
                   <div class="col-xl-4">
                     <div class="submit-field">
                       <h5>Telefono Oficina</h5>
-                      <input type="text" class="with-border" />
+                      <input type="text" class="with-border" [(ngModel)]="doctor.TelefonoOficina"/>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-
+            <br>
             <div class="row">
               <div class="col-xl-3">
                 <div class="submit-field">
                   <h5>Residencia</h5>
-                  <select
-                    class="selectpicker with-border"
-                    data-size="7"
-                    title="Elegir..."
-                    data-live-search="true"
+                  <select class="form-control" id="exampleFormControlSelect1" [(ngModel)]="doctor.Locacion"
                   >
                     <option value="San Jose">San Jose</option>
                     <option value="Heredia">Heredia</option>
@@ -112,36 +107,48 @@
               <div class="col-xl-3">
                 <div class="submit-field">
                   <h5>Página web</h5>
-                  <input type="text" class="with-border" />
+                  <input type="text" class="with-border" [(ngModel)]="doctor.WebURL"/>
                 </div>
               </div>
               <div class="col-xl-3">
                 <div class="submit-field">
                   <h5>Fecha Nacimiento</h5>
-                  <input type="text" class="with-border" />
+                  <input type="text" class="with-border" [(ngModel)]="doctor.FechaNacimiento"/>
                 </div>
               </div>
               <div class="col-xl-3">
-                <div class="submit-field">
-                  <h5>Genero</h5>
-                  <input type="text" class="with-border" />
+                <div class="form-group">
+                  <label for="exampleFormControlSelect1">Genero</label>
+                  <select class="form-control" id="exampleFormControlSelect1" [(ngModel)]="doctor.Genero">
+                    <option value="1">Masculino</option>
+                    <option value="2">Femenino</option>
+                    <option value="0">Sin Especificar</option>
+                  </select>
                 </div>
               </div>
             </div>
-
+            <div class="row">
+              <div class="col-xl-6">
+                <div class="submit-field">
+                  <h5>Título</h5>
+                  <input type="text" class="with-border" [(ngModel)]="doctor.Titulo" placeholder="Odontologo, Psicologo, Pediatra, Médico General..."/>
+                </div>
+              </div>
+            </div>
             <div class="row">
               <div class="col-xl-12">
                 <div class="submit-field">
                   <h5>Sobre Mi</h5>
-                  <textarea cols="30" rows="5" class="with-border"></textarea>
+                  <textarea cols="30" rows="5" class="with-border" [(ngModel)]="doctor.SobreMi"></textarea>
                 </div>
               </div>
             </div>
             <hr />
             <div class="col-xl-12">
-              <a href="#" class="button ripple-effect big margin-top-30"
-                >Guardar cambios</a
-              >
+              <button (click)="actualizarDoctor(doctor)" class="button ripple-effect big margin-top-30"
+                >Guardar cambios
+                <i class="far fa-save"></i>
+              </button>
             </div>
             <br />
           </div>
@@ -153,105 +160,76 @@
         <div class="dashboard-box">
           <!-- Headline -->
           <div class="headline">
-            <h3><i class="fas fa-address-card"></i> Información Personal</h3>
+            <div class="row justify-content-around">
+              <div class="col-4">
+                <h3><i class="fas fa-school"></i> Estudios Académicos</h3>
+              </div>
+              <div class="col-4">
+                <button class="button ripple-effect" (click)="abrirModal(template2)">
+                  Agregar
+                  <i class="fas fa-plus-circle"></i>
+                </button>
+              </div>
+            </div>
           </div>
 
-          <div class="content">
+          <div class="content" *ngFor="let estudio of doctor.Estudios">
             <ul class="fields-ul">
               <li>
                 <div class="row">
-                  <div class="col-xl-6">
+                  <div class="col-xl-4">
                     <div class="submit-field">
-                      <h5>Titulo</h5>
-                      <input type="text" class="with-border" />
+                      <h5>Centro de Estudios</h5>
+                      <input type="text" class="with-border"  [(ngModel)]="estudio.CentroEstudios"/>
                     </div>
                   </div>
 
-                  <div class="col-xl-6">
+                  <div class="col-xl-4">
                     <div class="submit-field">
-                      <h5>Residencia</h5>
-                      <select
-                        class="selectpicker with-border"
-                        data-size="7"
-                        title="Elegir..."
-                        data-live-search="true"
-                      >
-                        <option value="San Jose">San Jose</option>
-                        <option value="Heredia">Heredia</option>
-                        <option value="Alajuela">Alajuela</option>
-                        <option value="Puntarenas">Puntarenas</option>
-                        <option value="Guanacaste">Guanacaste</option>
-                        <option value="Cartago">Cartago</option>
-                        <option value="Limón">Limón</option>
-                      </select>
+                      <h5>Grado</h5>
+                      <input type="text" class="with-border"  [(ngModel)]="estudio.Grado"/>
                     </div>
                   </div>
 
-                  <div class="col-xl-12">
+                  <div class="col-xl-4">
                     <div class="submit-field">
-                      <h5>Presentación</h5>
-                      <textarea
-                        cols="30"
-                        rows="5"
-                        class="with-border"
-                      ></textarea>
+                      <h5>Descripción</h5>
+                      <input type="text" class="with-border"  [(ngModel)]="estudio.Descripcion"/>
                     </div>
                   </div>
                 </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- Dashboard Box -->
-      <div class="col-xl-12">
-        <div class="dashboard-box">
-          <!-- Headline -->
-          <div class="headline">
-            <h3><i class="fas fa-school"></i> Estudios Académicos</h3>
-          </div>
-
-          <div class="content">
-            <ul class="fields-ul">
-              <li>
                 <div class="row">
-                  <div class="col-xl-6">
+                  <div class="col-xl-4">
                     <div class="submit-field">
-                      <h5>Titulo</h5>
-                      <input type="text" class="with-border" />
+                      <h5>Fecha inicio</h5>
+                      <div class="input-group">
+                        <input id="dateOfBirth" class="form-control" [(ngModel)]="estudio.FechaInicial" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker" [(ngModel)]="experienciaModel.FechaInicial">
+                        <div class="input-group-append">
+                          <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"><i class="fas fa-calendar-alt"></i></button>
+                        </div>
+                      </div>
                     </div>
                   </div>
-
-                  <div class="col-xl-6">
+                  <div class="col-xl-4">
                     <div class="submit-field">
-                      <h5>Residencia</h5>
-                      <select
-                        class="selectpicker with-border"
-                        data-size="7"
-                        title="Elegir..."
-                        data-live-search="true"
-                      >
-                        <option value="San Jose">San Jose</option>
-                        <option value="Heredia">Heredia</option>
-                        <option value="Alajuela">Alajuela</option>
-                        <option value="Puntarenas">Puntarenas</option>
-                        <option value="Guanacaste">Guanacaste</option>
-                        <option value="Cartago">Cartago</option>
-                        <option value="Limón">Limón</option>
-                      </select>
+                      <h5>Fecha Fin</h5>
+                      <div class="input-group">
+                        <input id="dateOfBirth" class="form-control" [(ngModel)]="estudio.FechaFinal" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker" [(ngModel)]="experienciaModel.FechaInicial">
+                        <div class="input-group-append">
+                          <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"><i class="fas fa-calendar-alt"></i></button>
+                        </div>
+                      </div>
                     </div>
                   </div>
-
-                  <div class="col-xl-12">
-                    <div class="submit-field">
-                      <h5>Presentación</h5>
-                      <textarea
-                        cols="30"
-                        rows="5"
-                        class="with-border"
-                      ></textarea>
-                    </div>
+                  <div class="col-xl-4 justify-content-around">
+                    <button class="button dark ripple-effect" (click)="eliminarAtributo('estudios',estudio.IdEstudio)">
+                      Eliminar
+                      <i class="fas fa-trash-alt"></i>
+                    </button>
+                    <button class="button ripple-effect" (click)="actualizarAtributo('estudios', estudio.IdEstudio, estudio)">
+                      Actualizar
+                      <i class="fas fa-pen"></i>
+                    </button>
                   </div>
                 </div>
               </li>
@@ -266,48 +244,57 @@
           <!-- Headline -->
           <div class="headline">
             <h3><i class="fas fa-briefcase"></i> Experiencia Profesional</h3>
+            <button class="btn btn-secondary" (click)="abrirModal(template)">Agregar</button>
           </div>
 
-          <div class="content">
+          <div class="content" *ngFor="let experiencia of doctor.Experiencia">
             <ul class="fields-ul">
               <li>
                 <div class="row">
                   <div class="col-xl-6">
                     <div class="submit-field">
-                      <h5>Titulo</h5>
-                      <input type="text" class="with-border" />
+                      <h5>Lugar de trabajo</h5>
+                      <input type="text" name="lugarTrabajo" class="with-border"  [(ngModel)]="experiencia.LugarTrabajo"/>
                     </div>
                   </div>
 
                   <div class="col-xl-6">
                     <div class="submit-field">
-                      <h5>Residencia</h5>
-                      <select
-                        class="selectpicker with-border"
-                        data-size="7"
-                        title="Elegir..."
-                        data-live-search="true"
-                      >
-                        <option value="San Jose">San Jose</option>
-                        <option value="Heredia">Heredia</option>
-                        <option value="Alajuela">Alajuela</option>
-                        <option value="Puntarenas">Puntarenas</option>
-                        <option value="Guanacaste">Guanacaste</option>
-                        <option value="Cartago">Cartago</option>
-                        <option value="Limón">Limón</option>
-                      </select>
+                      <h5>Puesto</h5>
+                      <input type="text" name="puesto" class="with-border"  [(ngModel)]="experiencia.Puesto"/>
                     </div>
                   </div>
-
-                  <div class="col-xl-12">
+                </div>
+                <div class="row">
+                  <div class="col-xl-6">
                     <div class="submit-field">
-                      <h5>Presentación</h5>
-                      <textarea
-                        cols="30"
-                        rows="5"
-                        class="with-border"
-                      ></textarea>
+                      <h5>Fecha inicio</h5>
+                      <input type="text" name="fechaInicial" class="with-border"  [(ngModel)]="experiencia.FechaInicial"/>
                     </div>
+                  </div>
+                  <div class="col-xl-6">
+                    <div class="submit-field">
+                      <h5>Fecha Fin</h5>
+                      <input type="text" name="fechaFinal" class="with-border"  [(ngModel)]="experiencia.FechaFinal"/>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xl-6">
+                    <div class="submit-field">
+                      <h5>Labores</h5>
+                      <textarea type="text" name="labores" class="with-border"  [(ngModel)]="experiencia.Labores"></textarea>
+                    </div>
+                  </div>
+                  <div class="col-xl4 align-self-center">
+                    <button class="button dark ripple-effect" (click)="eliminarAtributo('experiencias',experiencia.IdExperiencia)">
+                      Eliminar
+                      <i class="fas fa-trash-alt"></i>
+                    </button>
+                    <button class="button ripple-effect" (click)="actualizarAtributo('experiencias', experiencia.IdExperiencia,experiencia)">
+                      Actualizar
+                      <i class="fas fa-pen"></i>
+                    </button>
                   </div>
                 </div>
               </li>
@@ -318,35 +305,145 @@
 
       <!-- Dashboard Box -->
       <div class="col-xl-12">
-        <div id="test1" class="dashboard-box">
+        <div class="dashboard-box">
           <!-- Headline -->
           <div class="headline">
-            <h3><i class="fas fa-lock"></i> Seguridad de la cuenta</h3>
-          </div>
-
-          <div class="content with-padding">
-            <div class="row">
-              <div class="col-xl-4">
-                <div class="submit-field">
-                  <h5>Contraseña Actual</h5>
-                  <input type="password" class="with-border" />
-                </div>
+            <div class="row justify-content-around">
+              <div class="col-4">
+                <h3><i class="fas fa-user-md"></i> Especialidades</h3>
               </div>
-
-              <div class="col-xl-4">
-                <div class="submit-field">
-                  <h5>Nueva Contraseña</h5>
-                  <input type="password" class="with-border" />
-                </div>
-              </div>
-
-              <div class="col-xl-4">
-                <div class="submit-field">
-                  <h5>Repetir Contraseña</h5>
-                  <input type="password" class="with-border" />
-                </div>
+              <div class="col-4">
+                <button class="button ripple-effect" (click)="abrirModal(template3)">
+                  Agregar
+                  <i class="fas fa-plus-circle"></i>
+                </button>
               </div>
             </div>
+          </div>
+
+          <div class="content" *ngFor="let especialidad of doctor.Especialidades">
+            <ul class="fields-ul">
+              <li>
+                <div class="row">
+                  <div class="col-xl-6">
+                    <div class="submit-field">
+                      <h5>Especialidad</h5>
+                      <input type="text" class="with-border"  [(ngModel)]="especialidad.Descripcion"/>
+                    </div>
+                  </div>
+
+                  <div class="col-xl-6 justify-content-around">
+                    <button class="button dark ripple-effect" (click)="eliminarAtributo('especialidades',especialidad.IdEspecialidad)">
+                      Eliminar
+                      <i class="fas fa-trash-alt"></i>
+                    </button>
+                    <button class="button ripple-effect" (click)="actualizarAtributo('especialidades', especialidad.IdEspecialidad, especialidad)">
+                      Actualizar
+                      <i class="fas fa-pen"></i>
+                    </button>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+       <!-- Dashboard Box -->
+       <div class="col-xl-12">
+        <div class="dashboard-box">
+          <!-- Headline -->
+          <div class="headline">
+            <div class="row justify-content-around">
+              <div class="col-4">
+                <h3><i class="fas fa-language"></i> Idiomas</h3>
+              </div>
+              <div class="col-4">
+                <button class="button ripple-effect" (click)="abrirModal(template4)">
+                  Agregar
+                  <i class="fas fa-plus-circle"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="content" *ngFor="let idioma of doctor.Idioma">
+            <ul class="fields-ul">
+              <li>
+                <div class="row">
+                  <div class="col-xl-6">
+                    <div class="submit-field">
+                      <h5>Idioma</h5>
+                      <input type="text" class="with-border"  [(ngModel)]="idioma.Descripcion"/>
+                    </div>
+                  </div>
+
+                  <div class="col-xl-6 justify-content-around">
+                    <button class="button dark ripple-effect" (click)="eliminarAtributo('idiomas',idioma.IdIdioma)">
+                      Eliminar
+                      <i class="fas fa-trash-alt"></i>
+                    </button>
+                    <button class="button ripple-effect" (click)="actualizarAtributo('idiomas', idioma.IdIdioma, idioma)">
+                      Actualizar
+                      <i class="fas fa-pen"></i>
+                    </button>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+       <!-- Dashboard Box -->
+       <div class="col-xl-12">
+        <div class="dashboard-box">
+          <!-- Headline -->
+          <div class="headline">
+            <div class="row justify-content-around">
+              <div class="col-4">
+                <h3><i class="fas fa-icons"></i> Redes Sociales</h3>
+              </div>
+              <div class="col-4">
+                <button class="button ripple-effect" (click)="abrirModal(template5)">
+                  Agregar
+                  <i class="fas fa-plus-circle"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="content" *ngFor="let red of doctor.RedesSociales">
+            <ul class="fields-ul">
+              <li>
+                <div class="row">
+                  <div class="col-xl-4">
+                    <div class="submit-field">
+                      <h5>Red</h5>
+                      <input type="text" class="with-border"  [(ngModel)]="red.Descripcion"/>
+                    </div>
+                  </div>
+
+                  <div class="col-xl-4">
+                    <div class="submit-field">
+                      <h5>Url</h5>
+                      <input type="text" class="with-border"  [(ngModel)]="red.Url"/>
+                    </div>
+                  </div>
+
+                  <div class="col-xl-4 justify-content-around">
+                    <button class="button dark ripple-effect" (click)="eliminarAtributo('redesSociales',red.IdRedesSociales)">
+                      Eliminar
+                      <i class="fas fa-trash-alt"></i>
+                    </button>
+                    <button class="button ripple-effect" (click)="actualizarAtributo('redesSociales', red.IdRedesSociales, red)">
+                      Actualizar
+                      <i class="fas fa-pen"></i>
+                    </button>
+                  </div>
+                </div>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
@@ -359,7 +456,234 @@
       </div>
     </div>
     <!-- Row / End -->
-    <app-dashboardfooter></app-dashboardfooter>
   </div>
   <!-- Dashboard Content / End -->
 </div>
+
+<ng-template #template let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Agregar {{ atributo }}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #Form="ngForm">
+      <div class="row">
+        <div class="col-6">
+          <div class="form-group">
+            <label>Lugar de trabajo</label>
+            <div class="input-group">
+              <input id="NombreEvento" class="form-control" name="lugarTrabajo" [(ngModel)]="experienciaModel.LugarTrabajo">
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group">
+            <label>Puesto</label>
+            <div class="input-group">
+              <input id="NombreEvento" class="form-control" name="puesto" [(ngModel)]="experienciaModel.Puesto">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label>Labores</label>
+            <div class="input-group">
+              <textarea id="NombreEvento" class="form-control" name="labores" [(ngModel)]="experienciaModel.Labores"></textarea>
+            </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <div class="form-group">
+            <label for="dateOfBirth">Fecha Inicio</label>
+            <div class="input-group">
+              <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker" [(ngModel)]="experienciaModel.FechaInicial">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"><i class="fas fa-calendar-alt"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group">
+            <label for="dateOfBirth">Fecha Fin</label>
+            <div class="input-group">
+              <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp2" ngbDatepicker #dp2="ngbDatepicker" [(ngModel)]="experienciaModel.FechaFinal">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary calendar" (click)="dp2.toggle()" type="button"><i class="fas fa-calendar-alt"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>  
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <button class="btn btn-primary btn-block" (click)="agregarAtributo('experiencias',this.experienciaModel)">Agregar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</ng-template>
+
+<ng-template #template2 let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Agregar {{ atributo }}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #Form="ngForm">
+      <div class="row">
+        <div class="col-6">
+          <div class="form-group">
+            <label>Centro de estudios</label>
+            <div class="input-group">
+              <input id="centroEstudios" class="form-control" name="centroEstudios" [(ngModel)]="estudiosModel.CentroEstudios">
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group">
+            <label>Grado</label>
+            <div class="input-group">
+              <input id="grado" class="form-control" name="grado" [(ngModel)]="estudiosModel.Grado">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label>Descripcion</label>
+            <div class="input-group">
+              <textarea id="descripcion" class="form-control" name="descripcion" [(ngModel)]="estudiosModel.Descripcion"></textarea>
+            </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <div class="form-group">
+            <label for="dateOfBirth">Fecha Inicio</label>
+            <div class="input-group">
+              <input id="dateOfBirth" class="form-control" placeholder="mm-dd-yyyy" name="dp" ngbDatepicker #dp="ngbDatepicker" [(ngModel)]="estudiosModel.FechaInicial">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"><i class="fas fa-calendar-alt"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group">
+            <label for="dateOfBirth">Fecha Final</label>
+            <div class="input-group">
+              <input id="dateOfBirth" class="form-control" placeholder="mm-dd-yyyy" name="dp2" ngbDatepicker #dp2="ngbDatepicker" [(ngModel)]="estudiosModel.FechaFinal">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary calendar" (click)="dp2.toggle()" type="button"><i class="fas fa-calendar-alt"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>  
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <button class="btn btn-primary btn-block" (click)="agregarAtributo('estudios',estudiosModel)">Agregar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</ng-template>
+
+<ng-template #template3 let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Agregar {{ atributo }}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #Form="ngForm">
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group">
+            <label>Descripcion</label>
+            <div class="input-group">
+              <input id="centroEstudios" class="form-control" name="centroEstudios" [(ngModel)]="model.descripcion">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <button class="btn btn-primary btn-block" (click)="agregarAtributo('especialidades',model)">Agregar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</ng-template>
+
+<ng-template #template4 let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Agregar {{ atributo }}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #Form="ngForm">
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group">
+            <label>Descripcion</label>
+            <div class="input-group">
+              <input id="centroEstudios" class="form-control" name="centroEstudios" [(ngModel)]="model.descripcion">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <button class="btn btn-primary btn-block" (click)="agregarAtributo('idiomas',model)">Agregar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</ng-template>
+
+<ng-template #template5 let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Agregar {{ atributo }}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #Form="ngForm">
+      <div class="row">
+        <div class="col-6">
+          <div class="form-group">
+            <label>Descripcion</label>
+            <div class="input-group">
+              <input id="centroEstudios" class="form-control" name="centroEstudios" [(ngModel)]="model.descripcion">
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group">
+            <label>Url</label>
+            <div class="input-group">
+              <input id="centroEstudios" class="form-control" name="centroEstudios" [(ngModel)]="model.url">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <button class="btn btn-primary btn-block" (click)="agregarAtributo('redesSociales',model)">Agregar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</ng-template>

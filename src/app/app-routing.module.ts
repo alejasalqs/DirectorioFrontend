@@ -10,6 +10,8 @@ import { DASHBOARD_ROUTES } from "./components/dashboard/dashboard.routes";
 import { DoctoresDetalleResolver } from "./Resolvers/doctor-detalle.resolver";
 import { DoctorListaResolver } from "./Resolvers/doctor-lista.resolver";
 import { RegisterComponent } from "./register/register.component";
+import { RecuperarContrasenaComponent } from './recuperar-contrasena/recuperar-contrasena.component';
+import { AgendaClienteComponent } from './agenda-cliente/agenda-cliente.component';
 
 const routes: Routes = [
   {
@@ -24,7 +26,7 @@ const routes: Routes = [
     children: DASHBOARD_ROUTES,
   },
   {
-    path: "doctores/:termino",
+    path: "doctores",
     component: ListadoDoctoresComponent,
     resolve: { doctores: DoctorListaResolver },
   },
@@ -34,8 +36,16 @@ const routes: Routes = [
     resolve: { doctor: DoctoresDetalleResolver },
   },
   {
+    path: "agenda/:id",
+    component: AgendaClienteComponent,
+  },
+  {
     path: "login",
     component: LoginComponent,
+  },
+  {
+    path: "recuperar",
+    component: RecuperarContrasenaComponent,
   },
   {
     path: "registro",

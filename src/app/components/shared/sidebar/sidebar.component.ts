@@ -13,7 +13,9 @@ export class SidebarComponent implements OnInit {
   ngOnInit() {}
 
   logout() {
+    //this.auth.actualizarIngreso();
     localStorage.removeItem("token");
+    localStorage.removeItem("doctor");
     this.toastr.info("Se ha finalizado la sesión", "Mensaje del sistema");
     this.router.navigate(["/index"]);
   }

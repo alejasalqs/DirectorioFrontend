@@ -4,6 +4,8 @@ import { FullCalendarComponent } from "@fullcalendar/angular";
 import { EventInput } from "@fullcalendar/core";
 import timeGrigPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction"; // for dateClick
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrAlertService } from 'src/app/services/toastr-alert.service';
 
 @Component({
   selector: "app-calendario",
@@ -15,7 +17,14 @@ export class CalendarioComponent implements OnInit {
   @Input() plugins;
   @Input() weekends;
   @Input() events;
-  constructor() {}
+  @Input() header;
+  @Input() calendarEvents;
+  @Input() deepChangeDetection = true;
+  constructor() {
+    console.log(this.defaultView);
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log('Estoy aqui ')
+  }
 }

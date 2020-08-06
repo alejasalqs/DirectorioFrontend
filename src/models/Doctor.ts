@@ -18,6 +18,7 @@ export class Doctor {
     public WebUrl?: string,
     public Estado?: boolean,
     public Foto?: string,
+    public Titulo?: string,
     //precio?: number,
     public Genero?: number,
 

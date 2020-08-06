@@ -14,16 +14,18 @@
       <div class="sidebar-container">
         <!-- Location -->
         <div class="sidebar-widget">
-          <h3>Locación</h3>
-          <div class="input-with-icon">
-            <div id="autocomplete-container">
-              <input
-                id="locacion"
-                type="text"
-                placeholder="San José, Heredia, Limón ..."
-              />
-            </div>
-            <i class="fas fa-map-marker-alt"></i>
+          <div class="form-group">
+            <label for="exampleFormControlSelect1">Locación</label>
+            <select class="form-control" name="locacion" [(ngModel)]="filtros.Locacion">
+              <option value="">Seleccionar--</option>
+              <option value="San Jose">San Jose</option>
+              <option value="Heredia">Heredia</option>
+              <option value="Alajuela">Alajuela</option>
+              <option value="Puntarenas">Puntarenas</option>
+              <option value="Guanacaste">Guanacaste</option>
+              <option value="Cartago">Cartago</option>
+              <option value="Limón">Limón</option>
+          </select>
           </div>
         </div>
 
@@ -32,8 +34,9 @@
           <div class="input-with-icon">
             <div id="autocomplete-container">
               <input
-                id="especialidad"
                 type="text"
+                name="Especialidad"
+                [(ngModel)]="filtros.Especialidad"
                 placeholder="Odontología, Ginecología ..."
               />
             </div>
@@ -43,26 +46,21 @@
 
         <!-- Keywords -->
         <div class="sidebar-widget">
-          <h3>Genero</h3>
-          <div class="radio">
-            <input id="radio-1" name="radio" type="radio" checked="" />
-            <label for="radio-1"
-              ><span class="radio-label"></span> Hombre</label
-            >
-          </div>
-
-          <br />
-
-          <div class="radio">
-            <input id="radio-2" name="radio" type="radio" />
-            <label for="radio-2"><span class="radio-label"></span> Mujer</label>
+          <div class="form-group">
+            <label for="exampleFormControlSelect1">Genero</label>
+            <select class="form-control" name="genero" [(ngModel)]="filtros.Genero">
+              <option value="">Seleccionar--</option>
+              <option value="1">Masculino</option>
+              <option value="2">Femenino</option>
+              <option value="0">Otro...</option>
+            </select>
           </div>
         </div>
 
         <div class="sidebar-widget">
-          <a href="#" class="button button-sliding-icon ripple-effect"
+          <button type="button" (click)="cargarUsuarios()" class="button button-sliding-icon ripple-effect"
             >Aplicar Filtros <i class="fas fa-search"></i
-          ></a>
+          ></button>
         </div>
 
         <div class="clearfix"></div>
@@ -71,20 +69,7 @@
     <div class="col-xl-9 col-lg-8 content-left-offset">
       <h3 class="page-title">
         Resultados de la búsqueda:
-        <small>{{ this.termino }}</small>
       </h3>
-
-      <div class="notify-box margin-top-15">
-        <div class="sort-by">
-          <span>Ordenar por:</span>
-          <select class="selectpicker">
-            <option>Relevance</option>
-            <option>Newest</option>
-            <option>Oldest</option>
-            <option>Random</option>
-          </select>
-        </div>
-      </div>
 
       <!-- Freelancers List Container -->
       <div class="freelancers-container freelancers-list-layout margin-top-35">
@@ -99,7 +84,7 @@
               <!-- Avatar -->
               <div class="freelancer-avatar">
                 <a [routerLink]="['/doctor', doctor.IdDoctor]"
-                  ><img src="{{ doctor.foto }}" alt=""
+                  ><img src="{{ doctor.Foto | imagen }}" alt=""
                 /></a>
               </div>
 
@@ -122,11 +107,7 @@
                       data-tippy-placement="top"
                   /></a>
                 </h4>
-                <span>{{ doctor.Especialidades[0].descripcion }}</span>
-                <!-- Rating -->
-                <div class="freelancer-rating">
-                  <div class="star-rating" data-rating="4.9"></div>
-                </div>
+                <span>{{doctor.Titulo}}</span>
               </div>
             </div>
           </div>
@@ -137,10 +118,8 @@
               <ul>
                 <li>
                   Location
-                  <strong> London</strong>
+                  <strong> {{doctor.Locacion}}</strong>
                 </li>
-                <li>Rate <strong>$60 / hr</strong></li>
-                <li>Job Success <strong>95%</strong></li>
               </ul>
             </div>
             <a
@@ -178,3 +157,4 @@
     </div>
   </div>
 </div>
+<app-footer></app-footer>

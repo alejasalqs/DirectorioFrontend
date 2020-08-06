@@ -1,22 +1,24 @@
-import { Component, OnInit, TemplateRef } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
+import { EventInput } from '@fullcalendar/core';
+import { Doctor } from 'src/models/Doctor';
 import dayGridPlugin from "@fullcalendar/daygrid";
 import { FullCalendarComponent } from "@fullcalendar/angular";
-import { EventInput } from "@fullcalendar/core";
 import timeGrigPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction"; // for dateClick
+import { AgendaService } from '../services/agenda.service';
+import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { AgendaService } from 'src/app/services/agenda.service';
-import { Doctor } from 'src/models/Doctor';
-import { AuthService } from 'src/app/services/auth.service';
-import { ToastrAlertService } from 'src/app/services/toastr-alert.service';
+import { ToastrAlertService } from '../services/toastr-alert.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
-  selector: "app-agenda",
-  templateUrl: "./agenda.component.html",
-  styleUrls: ["./agenda.component.css"],
+  selector: 'app-agenda-cliente',
+  templateUrl: './agenda-cliente.component.html',
+  styleUrls: ['./agenda-cliente.component.css']
 })
-export class AgendaComponent implements OnInit {
-  constructor(private modalService: NgbModal,private agendaService: AgendaService, private authService: AuthService, private toastr: ToastrAlertService) {}
+export class AgendaClienteComponent implements OnInit {
+
+  constructor(private authService: AuthService, private modalService: NgbModal,private agendaService: AgendaService, private route: ActivatedRoute,private toastr: ToastrAlertService) { }
 
   modelEvento = {};
   calendarVisible = true;
@@ -27,12 +29,11 @@ export class AgendaComponent implements OnInit {
   selecteIDAgenda = 0;
 
   ngOnInit() {
-    this.doctor = this.authService.obtenerDoctorLogeado();
     this.cargarEventos();
   }
 
   cargarEventos() {
-    this.agendaService.obtenerMetodosAgenda(this.doctor.IdDoctor).subscribe(
+    this.agendaService.obtenerMetodosAgenda(3).subscribe(
       (data: any) => {
         this.darFormatoFechaDDMMYYYY(data.eventos);
         for (let evento of data.eventos) {
@@ -46,25 +47,13 @@ export class AgendaComponent implements OnInit {
     );
   }
 
-  toggleVisible() {
-    this.calendarVisible = !this.calendarVisible;
-  }
-
-  toggleWeekends() {
-    this.calendarWeekends = !this.calendarWeekends;
-  }
-
-  handleDateClick(arg,template) {
-    this.modalService.open(template);
-  }
-
   eventClick(arg,template) {
     this. selecteIDAgenda = arg.id;
     const modalRef = this.modalService.open(template);
   }
 
   agendar(evento, modal){
-    evento.IdDoctor = this.doctor.IdDoctor;
+    evento.IdDoctor = this.authService.obtenerDoctorLogeado().IdDoctor;
     this.agendaService.actualizarEvento(evento,this.selecteIDAgenda).subscribe( (data: any) => {
       this.selecteIDAgenda = 0;
       modal.dismiss();
@@ -88,4 +77,3 @@ export class AgendaComponent implements OnInit {
     }
   }
 }
-

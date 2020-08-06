@@ -9,6 +9,8 @@ export class DashboardfooterComponent implements OnInit {
 
   constructor() { }
 
+  fecha = new Date();
+
   ngOnInit() {
   }
 

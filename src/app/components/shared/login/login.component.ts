@@ -10,6 +10,7 @@ import { ToastrAlertService } from "../../../services/toastr-alert.service";
 })
 export class LoginComponent implements OnInit {
   model = {};
+
   constructor(
     private auth: AuthService,
     private router: Router,
@@ -19,7 +20,6 @@ export class LoginComponent implements OnInit {
   ngOnInit() {}
 
   login() {
-    console.log(this.model);
     return this.auth.login(this.model).subscribe(
       () => {
         this.toastr.success("Has iniciado sesión");

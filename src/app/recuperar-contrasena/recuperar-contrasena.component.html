@@ -1,0 +1,76 @@
+<!-- Wrapper -->
+<div id="wrapper">
+    <!-- Header Container
+      ================================================== -->
+    <app-navbar></app-navbar>
+    <div class="clearfix"></div>
+    <!-- Header Container / End -->
+  
+    <!-- Titlebar
+      ================================================== -->
+    <div id="titlebar" class="gradient">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <h2>Recuperar Contraseña</h2>
+  
+            <!-- Breadcrumbs -->
+            <nav id="breadcrumbs" class="dark">
+              <ul>
+                <li><a href="#">Home</a></li>
+                <li>Log In</li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Page Content
+      ================================================== -->
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-5 offset-xl-3">
+          <div class="login-register-page">
+            <!-- Welcome Text -->
+            <div class="welcome-text">
+              <h3>Ingresa el correo electrónico con el que inicias sesión</h3>
+            </div>
+  
+            <!-- Form -->
+            <form #f="ngForm" (ngSubmit)="recuperar()" id="login-form">
+              <div class="input-with-icon-left">
+                <i class="far fa-envelope"></i>
+                <input
+                  type="text"
+                  class="input-text with-border"
+                  name="correo"
+                  id="correo"
+                  [(ngModel)]="correo"
+                  placeholder="Correo electrónico"
+                  required
+                />
+              </div>
+            </form>
+            <br>
+            <!-- Button -->
+            <button
+              class="button full-width button-sliding-icon ripple-effect margin-top-10"
+              type="submit"
+              form="login-form"
+            >
+              Recuperar Contraseña <i class="fas fa-sign-out-alt"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Spacer -->
+    <div class="margin-top-70"></div>
+    <!-- Spacer / End-->
+  
+    <app-footer></app-footer>
+  </div>
+  <!-- Wrapper / End -->
+  

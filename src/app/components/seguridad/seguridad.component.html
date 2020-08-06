@@ -1,0 +1,52 @@
+<div class="dashboard-content-container" data-simplebar>
+    <div class="dashboard-content-inner">
+      <!-- Dashboard Headline -->
+      <div class="dashboard-headline">
+        <h3>Seguridad de la cuenta</h3>
+  
+        <!-- Breadcrumbs -->
+        <nav id="breadcrumbs" class="dark">
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Dashboard</a></li>
+            <li>Settings</li>
+          </ul>
+        </nav>
+      </div>
+
+      <!-- Dashboard Box -->
+      <div class="col-xl-12">
+        <div id="test1" class="dashboard-box">
+          <!-- Headline -->
+          <div class="headline">
+            <h3><i class="fas fa-lock"></i> Seguridad de la cuenta</h3>
+          </div>
+
+          <div class="content with-padding">
+            <form #cambiarContraForm="ngForm" (ngSubmit)="cambiar()">
+              <div class="row">
+                <div class="col-xl-6">
+                  <div class="submit-field">
+                    <h5>Contraseña Actual</h5>
+                    <input [(ngModel)]="contrasena" name="contrasena" type="password" class="with-border" />
+                  </div>
+                </div>
+  
+                <div class="col-xl-6">
+                  <div class="submit-field">
+                    <h5>Nueva Contraseña</h5>
+                    <input [(ngModel)]="nuevaContrasena" name="nuevaContrasena" type="password" class="with-border" />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xl-12">
+                  <button href="#" class="button ripple-effect big margin-top-30">Cambiar contraseña</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

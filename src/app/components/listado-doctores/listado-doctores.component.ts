@@ -3,7 +3,6 @@ import { Doctor } from "../../../models/Doctor";
 import { DoctoresService } from "../../services/doctores.service";
 import { ToastrAlertService } from "../../services/toastr-alert.service";
 import { ActivatedRoute } from "@angular/router";
-import { Pagination, PaginatedResult } from "../../../models/pagination";
 
 @Component({
   selector: "app-listado-doctores",
@@ -12,8 +11,7 @@ import { Pagination, PaginatedResult } from "../../../models/pagination";
 })
 export class ListadoDoctoresComponent implements OnInit {
   doctores: Doctor[] = [];
-  pagination: Pagination;
-  termino: string;
+  filtros: any = {};
 
   constructor(
     private doctoresService: DoctoresService,
@@ -21,12 +19,7 @@ export class ListadoDoctoresComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
 
-  numeroPagina = 1;
-  tamanoPagina = 5;
-
   ngOnInit() {
-    this.route.params.subscribe((params) => (this.termino = params["termino"]));
-    console.log(this.termino);
     this.cargarUsuarios();
     /*this.route.data.subscribe((data: any) => {
       this.doctores = data["doctores"].result;
@@ -36,14 +29,9 @@ export class ListadoDoctoresComponent implements OnInit {
     });*/
   }
 
-  pageChanged(event: any) {
-    this.pagination.paginaActual = event.page;
-    this.cargarUsuarios();
-  }
-
   cargarUsuarios() {
-    console.log(this.termino);
-    this.doctoresService.obtenerDoctores(this.termino).subscribe(
+    console.log(this.filtros);
+    this.doctoresService.obtenerDoctores(this.filtros).subscribe(
       (res: any) => {
         this.doctores = res.doctores;
         console.log(this.doctores);

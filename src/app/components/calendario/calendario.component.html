@@ -1,1 +1,15 @@
-<p>calendario works!</p>
+<full-calendar
+  *ngIf="calendarVisible"
+  [defaultView]="dayGridMonth"
+  [plugins]="calendarPlugins"
+  [weekends]="calendarWeekends"
+  [events]="calendarEvents"
+  [deepChangeDetection]="true"
+  [header]="{
+    left: 'prev,next today',
+    center: 'title',
+    right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek,agendaWeek'
+  }"
+  (dateClick)="handleDateClick($event, template)"
+  (eventClick)="eventClick($event.event,template2)"
+></full-calendar>

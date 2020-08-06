@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ToastrModule } from "ngx-toastr";
 import { FullCalendarModule } from "@fullcalendar/angular"; // for FullCalendar!
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { AppComponent } from "./app.component";
 import { NavbarComponent } from "./components/shared/navbar/navbar.component";
@@ -27,6 +28,13 @@ import { DoctorListaResolver } from "./Resolvers/doctor-lista.resolver";
 import { CalendarioComponent } from "./components/calendario/calendario.component";
 import { PaginationModule } from "ngx-bootstrap/pagination";
 import { RegisterComponent } from './register/register.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SeguridadComponent } from './components/seguridad/seguridad.component';
+import { RecuperarContrasenaComponent } from './recuperar-contrasena/recuperar-contrasena.component';
+import { ConfigurarAgendaComponent } from './configurar-agenda/configurar-agenda.component';
+import { AgendaClienteComponent } from './agenda-cliente/agenda-cliente.component';
+import { ImagenPipe } from './Pipes/imagen.pipe';
+
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -49,14 +57,21 @@ export function tokenGetter() {
     HomeComponent,
     CalendarioComponent,
     RegisterComponent,
+    SeguridadComponent,
+    RecuperarContrasenaComponent,
+    ConfigurarAgendaComponent,
+    AgendaClienteComponent,
+    ImagenPipe,
   ],
   imports: [
     BrowserModule,
+    NgbModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     PaginationModule.forRoot(),
+    ModalModule.forRoot(),
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
@@ -67,7 +82,8 @@ export function tokenGetter() {
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
     FullCalendarModule,
-    PaginationModule.forRoot(), // for FullCalendar!
+    PaginationModule.forRoot(),
+    ModalModule.forRoot(), // for FullCalendar!
   ],
   providers: [
     ErrorInterceptorProvider,
