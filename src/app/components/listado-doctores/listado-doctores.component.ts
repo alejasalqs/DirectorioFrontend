@@ -12,6 +12,7 @@ import { ActivatedRoute } from "@angular/router";
 export class ListadoDoctoresComponent implements OnInit {
   doctores: Doctor[] = [];
   filtros: any = {};
+  nombresSelect: any[] = [];
 
   constructor(
     private doctoresService: DoctoresService,
@@ -20,6 +21,7 @@ export class ListadoDoctoresComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.cargarSelect();
     this.cargarUsuarios();
     /*this.route.data.subscribe((data: any) => {
       this.doctores = data["doctores"].result;
@@ -30,15 +32,22 @@ export class ListadoDoctoresComponent implements OnInit {
   }
 
   cargarUsuarios() {
-    console.log(this.filtros);
     this.doctoresService.obtenerDoctores(this.filtros).subscribe(
       (res: any) => {
         this.doctores = res.doctores;
-        console.log(this.doctores);
+        console.log(this.doctores)
       },
       (error) => {
+        console.log(error)
         this.toastr.error("Error", "Error");
       }
     );
+  }
+
+  cargarSelect() {
+    this.doctoresService.obtenerNombreDoctores().subscribe((resp:any) => {
+      this.nombresSelect = resp.doctores;
+      console.log(this.nombresSelect);
+    }, error => console.error(error))
   }
 }

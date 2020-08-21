@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { ToastrAlertService } from './toastr-alert.service';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +8,7 @@ import { environment } from 'src/environments/environment';
 export class FileUploadService {
 
   base_URL = environment.apiURL;
-  constructor() { }
+  constructor(private alert: ToastrAlertService) { }
 
   async actualizarFoto(archivo: File, tipo: 'doctor', id: any) {
     try {
@@ -26,6 +27,11 @@ export class FileUploadService {
       const data = await resp.json();
 
       console.log(data);
+      if(data.ok){
+        this.alert.success('Se ha subido la imagen','Operación realizada con éxito');
+      } else {
+        this.alert.error(data.mensaje, 'Error al subir imagen');
+      }
 
       return 'nombre de la imagen';
     } catch (error) {

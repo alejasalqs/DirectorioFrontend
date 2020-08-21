@@ -44,6 +44,14 @@
           </div>
         </div>
 
+        <div class="sidebar-widget">
+          <h3>Nombre</h3>
+          <select class="form-control" name="IdDoctor" [(ngModel)]="filtros.IdDoctor">
+            <option value="">Seleccionar--</option>
+            <option *ngFor="let nombre of nombresSelect" [value]="nombre.IdDoctor">{{nombre.Nombre}}</option>
+          </select>          
+        </div>
+
         <!-- Keywords -->
         <div class="sidebar-widget">
           <div class="form-group">
@@ -52,7 +60,7 @@
               <option value="">Seleccionar--</option>
               <option value="1">Masculino</option>
               <option value="2">Femenino</option>
-              <option value="0">Otro...</option>
+              <option value="3">Otro...</option>
             </select>
           </div>
         </div>
@@ -78,34 +86,24 @@
           <!-- Overview -->
           <div class="freelancer-overview">
             <div class="freelancer-overview-inner">
-              <!-- Bookmark Icon -->
-              <span class="bookmark-icon"></span>
-
               <!-- Avatar -->
-              <div class="freelancer-avatar">
+              <div>
                 <a [routerLink]="['/doctor', doctor.IdDoctor]"
-                  ><img src="{{ doctor.Foto | imagen }}" alt=""
+                  ><img class="img-avatar" src="{{ doctor.Foto | imagen }}" alt=""
                 /></a>
               </div>
 
               <!-- Name -->
               <div class="freelancer-name">
                 <h4>
-                  <a href="#"
+                  <a [routerLink]="['/doctor', doctor.IdDoctor]"
                     >{{
                       doctor.Nombre +
                         " " +
                         doctor.PrimerApellido +
                         " " +
                         doctor.SegundoApellido
-                    }}
-                    <img
-                      class="flag"
-                      src=""
-                      alt=""
-                      title="United Kingdom"
-                      data-tippy-placement="top"
-                  /></a>
+                    }}</a>
                 </h4>
                 <span>{{doctor.Titulo}}</span>
               </div>
@@ -115,13 +113,12 @@
           <!-- Details -->
           <div class="freelancer-details">
             <div class="freelancer-details-list">
-              <ul>
-                <li>
-                  Location
-                  <strong> {{doctor.Locacion}}</strong>
-                </li>
-              </ul>
-            </div>
+							<ul>
+								<li>Locación <strong><i class="icon-material-outline-location-on"></i> {{ doctor.Locacion }}</strong></li>
+								<li>Rate <strong>$60 / hr</strong></li>
+								<li>Job Success <strong>95%</strong></li>
+							</ul>
+						</div>
             <a
               [routerLink]="['/doctor', doctor.IdDoctor]"
               class="button button-sliding-icon ripple-effect"

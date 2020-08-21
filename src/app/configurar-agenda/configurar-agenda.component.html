@@ -23,55 +23,57 @@
           </div>
 
           <div class="content with-padding">
-            <form #cambiarContraForm="ngForm" (ngSubmit)="cambiar()">
               <div class="row">
-                <div class="col-xl-6">
+                <div class="col-xl-4">
                   <div class="submit-field">
                     <h5>Seleccionar días laborales</h5>
                     <div>
+                      <div class="checkbox">
+                        <input type="checkbox" id="lunes" (click)="checkCheckBoxvalue(dias[0])" [checked]="dias[0].Trabaja" [(ngModel)]="dias[0].Trabaja">
+                        <label for="lunes"><span class="checkbox-icon"></span> Lunes</label>
+                      </div>
+                        <br>
                         <div class="checkbox">
-                            <input type="checkbox" id="lunes" checked="">
-                            <label for="lunes"><span class="checkbox-icon"></span> Lunes</label>
+                          <input type="checkbox" id="martes" (click)="checkCheckBoxvalue(dias[1])" [checked]="dias[1].Trabaja" [(ngModel)]="dias[1].Trabaja">
+                          <label for="martes"><span class="checkbox-icon"></span> Martes</label>
                         </div>
                         <br>
                         <div class="checkbox">
-                            <input type="checkbox" id="Martes" checked="">
-                            <label for="Martes"><span class="checkbox-icon"></span> Martes</label>
+                          <input type="checkbox" id="miercoles" (click)="checkCheckBoxvalue(dias[2])" [checked]="dias[2].Trabaja" [(ngModel)]="dias[2].Trabaja">
+                          <label for="miercoles"><span class="checkbox-icon"></span> Miercoles</label>
                         </div>
                         <br>
                         <div class="checkbox">
-                            <input type="checkbox" id="Miercoles" checked="">
-                            <label for="Miercoles"><span class="checkbox-icon"></span> Miércoles</label>
+                          <input type="checkbox" id="jueves" (click)="checkCheckBoxvalue(dias[3])" [checked]="dias[3].Trabaja" [(ngModel)]="dias[3].Trabaja">
+                          <label for="jueves"><span class="checkbox-icon"></span> Jueves</label>
                         </div>
                         <br>
                         <div class="checkbox">
-                            <input type="checkbox" id="Jueves" checked="">
-                            <label for="Jueves"><span class="checkbox-icon"></span> Jueves</label>
+                          <input type="checkbox" id="viernes" (click)="checkCheckBoxvalue(dias[4])" (click)="checkCheckBoxvalue(dias[0])" [checked]="dias[4].Trabaja" [(ngModel)]="dias[4].Trabaja">
+                          <label for="viernes"><span class="checkbox-icon"></span> Viernes</label>
                         </div>
                         <br>
                         <div class="checkbox">
-                            <input type="checkbox" id="Viernes" checked="">
-                            <label for="Viernes"><span class="checkbox-icon"></span> Viernes</label>
+                          <input type="checkbox" id="sabado" (click)="checkCheckBoxvalue(dias[5])" [checked]="dias[5].Trabaja" [(ngModel)]="dias[5].Trabaja">
+                          <label for="sabado"><span class="checkbox-icon"></span> Sábado</label>
                         </div>
                         <br>
                         <div class="checkbox">
-                            <input type="checkbox" id="Sabado" checked="">
-                            <label for="Sabado"><span class="checkbox-icon"></span> Sábado</label>
+                          <input type="checkbox" id="domingo" (click)="checkCheckBoxvalue(dias[6])" [checked]="dias[6].Trabaja" [(ngModel)]="dias[6].Trabaja">
+                          <label for="domingo"><span class="checkbox-icon"></span> Domingo</label>
                         </div>
-                        <br>
-                        <div class="checkbox">
-                            <input type="checkbox" id="Domingo" checked="">
-                            <label for="Domingo"><span class="checkbox-icon"></span> Domingo</label>
-                        </div>
-
+                    </div>
+                    <br>
+                    <div class="col-xl-12">
+                        <button type="submit" (click)="configurarDias()" class="button ripple-effect big margin-top-30">Guardar Configuración</button>
                     </div>
                   </div>
                 </div>
   
-                <div class="col-xl-6">
+                <div class="col-xl-4">
                   <div class="submit-field">
                     <h5>Cantidad de hora laborales (por día)</h5>
-                    <select class="form-control" id="exampleFormControlSelect1"
+                    <select class="form-control" name="HorasLaborales" [(ngModel)]="config.HorasLaborales"
                   >
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -90,30 +92,53 @@
                   <br>
                   <div class="submit-field">
                     <h5>Hora de inicio</h5>
-                    <select class="form-control" id="exampleFormControlSelect1"
-                  >
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                  </select>
+                    <div class="row"> 
+                      <div class="col-sm-4">
+                        <select class="form-control" name="horaInicio" [(ngModel)]="config.Hora"
+                        >
+                          <option value="7:00">7:00</option>
+                          <option value="7:30">7:30</option>
+                          <option value="8:00">8:00</option>
+                          <option value="8:30">8:30</option>
+                          <option value="9:00">9:00</option>
+                          <option value="9:30">9:30</option>
+                          <option value="10:00">10:00</option>
+                          <option value="10:30">10:30</option>
+                          <option value="11:00">11:00</option>
+                          <option value="11:30">11:30</option>
+                          <option value="12:00">12:00</option>
+                          <option value="12:30">12:30<option>
+                        </select>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="row">
-                <div class="col-xl-12">
-                  <button href="#" class="button ripple-effect big margin-top-30">Cambiar contraseña</button>
+
+                <div class="col-xl-4">
+                  <div class="submit-field">
+                    <h5>Fecha Inicial</h5>
+                    <div class="input-group">
+                      <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker" [(ngModel)]="config.FechaInicial">
+                      <div class="input-group-append">
+                        <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"><i class="fas fa-calendar-alt"></i></button>
+                      </div>
+                    </div>
+                  </div>
+                  <br>
+                  <div class="submit-field">
+                    <h5>Fecha Final</h5>
+                    <div class="input-group">
+                      <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp2" ngbDatepicker #dp2="ngbDatepicker" [(ngModel)]="config.FechaFinal">
+                      <div class="input-group-append">
+                        <button class="btn btn-outline-secondary calendar" (click)="dp2.toggle()" type="button"><i class="fas fa-calendar-alt"></i></button>
+                      </div>
+                    </div>
+                  </div>
+                  <br>
+                    <div class="col-xl-12">
+                        <button type="submit" (click)="configurar()" class="button ripple-effect big margin-top-30">Guardar Configuración</button>
+                    </div>
                 </div>
-              </div>
-            </form>
           </div>
         </div>
       </div>

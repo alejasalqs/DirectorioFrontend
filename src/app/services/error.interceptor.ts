@@ -3,6 +3,7 @@ import {
   HttpInterceptor,
   HttpErrorResponse,
   HTTP_INTERCEPTORS,
+  HttpHeaders,
 } from "@angular/common/http";
 import { catchError } from "rxjs/operators";
 import { throwError } from "rxjs";
@@ -13,22 +14,31 @@ export class ErrorInterceptor implements HttpInterceptor {
     req: import("@angular/common/http").HttpRequest<any>,
     next: import("@angular/common/http").HttpHandler
   ): import("rxjs").Observable<import("@angular/common/http").HttpEvent<any>> {
-    return next.handle(req).pipe(
+
+    const headers = new HttpHeaders({
+      'x-token': localStorage.getItem('token') || 'no-token'
+    });
+
+    const reqClone = req.clone({
+      headers
+    })
+
+    return next.handle(reqClone).pipe(
       catchError((error) => {
         if (error.status === 401) {
-          return throwError(error.statusText);
+          return throwError(error.error.mensaje || 'Error de autenticación')
         }
         if (error instanceof HttpErrorResponse) {
-          const applicationError = error.headers.get("Application-Error");
-          if (applicationError) {
-            return throwError(applicationError);
+          if(error.status === 500) {
+            console.error('Log del error: \n', error.error['log']);
+            return throwError('Ocurrió un error al procesar la solicitud. Por favor revise el log de errores');
           }
           const serverError = error.error;
           let modalStateErrors = "";
           if (serverError.errors && typeof serverError.errors === "object") {
             for (const key in serverError.errors) {
               if (serverError.errors[key]) {
-                modalStateErrors += serverError.errors[key] + "\n";
+                modalStateErrors += serverError.errors[key]['msg'] + "\n";
               }
             }
           }

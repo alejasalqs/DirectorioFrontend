@@ -13,40 +13,34 @@
         </ul>
       </nav>
     </div>
-
     <!-- Dashboard Box -->
-    <div class="col-xl-12">
-      <div id="test1" class="dashboard-box">
-        <!-- Headline -->
-        <div class="headline">
-          <h3><i class="fas fa-lock"></i> Agenda</h3>
-        </div>
-        <button class="button ripple-effect" (click)="toggleVisible()">
-          Mostrar Calendario
-        </button>
-        <br />
-        <br />
-        <button class="button ripple-effect" (click)="toggleWeekends()">
-          Mostrar fines de semana
-        </button>
-        <br />
-        <hr />
-        <div class="content with-padding">
-          <full-calendar style="height: 300px;"
-          *ngIf="calendarVisible"
-          [timeZone]= 'UTC'
+    <div class="col-xl-12 col-sm-12" >
+      <button class="button ripple-effect" (click)="toggleWeekends()">
+        Mostrar fines de semana
+      </button>
+      <br />
+      <hr />
+      <div class="row">
+        <div class="col-xl-12 col-md-12 col-sm-12 col-xs-12">
+          <full-calendar
+          #fullcalendar
+          displayEventEnd="true"
+          [timeZone]="options.timeZone"
+          [buttonText]="options.buttonText"
+          [contentHeight]="options.contentHeight"
+          [height]="options.height"
+          [handleWindowResize]="options.handleWindowResize"
           [defaultView]="dayGridMonth"
-          [plugins]="calendarPlugins"
+          [plugins]="options.plugins"
           [weekends]="calendarWeekends"
           [events]="calendarEvents"
+          [header]="options.header"
+          [locales]="options.locales"
+          [locale]="options.locale"
+          [customButtons]="options.customButtons"
           [deepChangeDetection]="true"
-          [header]="{
-            left: 'prev,next today',
-            center: 'title',
-            right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek,agendaWeek'
-          }"
           (eventClick)="eventClick($event.event,template)"
-        ></full-calendar>
+      ></full-calendar>
         </div>
       </div>
     </div>

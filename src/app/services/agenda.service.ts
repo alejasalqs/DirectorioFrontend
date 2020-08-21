@@ -22,4 +22,11 @@ export class AgendaService {
   actualizarEvento(evento, id) {
     return this.http.put(this.baseURL + id, evento)
   }
+
+  llenarDatos(config: any) {
+    return this.http.post(this.baseURL + 'llenardatos', {
+      headers: {'x-token': localStorage.getItem('token')},
+      params: config
+    });
+  }
 }

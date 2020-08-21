@@ -10,9 +10,4 @@ export class WebviewComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit() {}
-
-  buscar(termino: string) {
-    console.log(termino);
-    this.router.navigate(["/doctores", termino]);
-  }
 }

@@ -26,6 +26,10 @@ export class DoctoresService {
     return this.http.get<Doctor>(this.baseURL, {params});
   }
 
+  obtenerNombreDoctores() {
+    return this.http.get(this.baseURL + "/nombres");
+  }
+
   /**
    * Obtiene la información detallada de un Doctor mediante un ID.
    * @param id Identificador del Doctor que se desea consultar

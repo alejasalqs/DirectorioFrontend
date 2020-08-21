@@ -17,12 +17,15 @@ export class NavbarComponent implements OnInit {
   foto;
   ngOnInit() {
     init_plugins();
-    this.foto = this.doctoresService.obtenerFoto(this.auth.obtenerDoctorLogeado().Foto);
+    this.foto = this.doctoresService.obtenerFoto(this.auth.obtenerDoctorLogeado().Foto || "");
   }
 
   logout() {
-    localStorage.removeItem("token");
-    this.toastr.info("Se ha finalizado la sesión", "Mensaje del sistema");
-    this.router.navigate(["/index"]);
+    this.auth.actualizarIngreso().subscribe(response => {
+      localStorage.removeItem("token");
+      localStorage.removeItem("doctor");
+      this.toastr.info("Se ha finalizado la sesión", "Mensaje del sistema");
+      this.router.navigate(["/index"]);
+    });
   }
 }

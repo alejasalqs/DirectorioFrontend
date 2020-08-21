@@ -44,25 +44,20 @@ export class MiPerfilComponent implements OnInit {
   }
 
   actualizarDoctor(doctor: Doctor) {
-    const {Nombre, PrimerApellido, SegundoApellido, Correo, TelefonoOficina, Celular, FechaNacimiento, WebUrl, SobreMi, Locacion, Titulo} = doctor;
-    this.doctoresService.editarDoctor({Nombre, PrimerApellido, SegundoApellido, Correo, TelefonoOficina, Celular, FechaNacimiento, WebUrl, SobreMi, Locacion, Titulo}, this.doctor.IdDoctor)
+    let {Nombre, PrimerApellido, SegundoApellido, Correo, TelefonoOficina, Celular, FechaNacimiento, WebUrl, SobreMi, Locacion, Titulo, Genero} = doctor;
+    console.log(FechaNacimiento)
+    this.doctoresService.editarDoctor({Nombre, PrimerApellido, SegundoApellido, Correo, TelefonoOficina, Celular, FechaNacimiento, WebUrl, SobreMi, Locacion, Titulo, Genero}, this.doctor.IdDoctor)
     .subscribe((data:any) => {
-      if(data.ok){
         this.toastr.success('','Se ha actualizado el registro correctamente');
-      }else {
-        this.toastr.error('','Hubo un error al realizar la operación')
-      }
-    })
+        this.auth.sobreescribirDoctorLogeado(this.doctor);
+    },err => this.toastr.error(err));
   }
 
   eliminarAtributo(atributo,idatributo){
     this.doctoresService.eliminarAtributosDoctor(atributo,idatributo,this.doctor.IdDoctor).subscribe((data:any) => {
-      if(data.ok){
         this.toastr.success('','Se ha elimido el registro correctamente');
-      }else {
-        this.toastr.error('','Hubo un error al realizar la operación')
-      }
-    });
+        this.auth.sobreescribirDoctorLogeado(this.doctor);
+    }, err => this.toastr.error(err));
   }
 
   agregarAtributo(atributo,objeto){
@@ -74,20 +69,15 @@ export class MiPerfilComponent implements OnInit {
     this.doctoresService.agregarAtributosDoctor(atributo ,objeto).subscribe((data:any) => {
         this.toastr.success('','Se ha agregado el registro correctamente');
         this.model = {};
-    }, err => this.toastr.error('','Hubo un error al realizar la operación'));
+        this.auth.sobreescribirDoctorLogeado(this.doctor);
+    }, err => this.toastr.error(err))
   }
 
   actualizarAtributo(atributo,idatributo,objeto){
     this.doctoresService.actualizarAtributosDoctor(atributo ,idatributo ,this.doctor.IdDoctor ,objeto).subscribe((data:any) => {
-      if(data.ok){
         this.toastr.success(data.mensaje.result,'Se ha actualizar el registro correctamente');
-      }else {
-        this.toastr.error('','Hubo un error al realizar la operación')
-      }
-    }, err => {
-      this.toastr.error('','Hubo un error al realizar la operación')
-      console.error(err);
-    });
+        this.auth.sobreescribirDoctorLogeado(this.doctor);
+    }, err => this.toastr.error(err));
   }
 
   abrirModal(template){
@@ -96,5 +86,5 @@ export class MiPerfilComponent implements OnInit {
 
   public darFormatoFecha(fecha) {
     return `${fecha.month}/${fecha.day}/${fecha.year}`
-}
+  }
 }

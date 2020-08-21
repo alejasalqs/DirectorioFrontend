@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ToastrModule } from "ngx-toastr";
 import { FullCalendarModule } from "@fullcalendar/angular"; // for FullCalendar!
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 import { AppComponent } from "./app.component";
 import { NavbarComponent } from "./components/shared/navbar/navbar.component";
@@ -70,20 +71,23 @@ export function tokenGetter() {
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    BsDatepickerModule.forRoot(),
     PaginationModule.forRoot(),
     ModalModule.forRoot(),
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        whitelistedDomains: ["localhost:5000"],
-        blacklistedRoutes: ["localhost:5000/auth"],
+        whitelistedDomains: ["localhost:3000"],
+        blacklistedRoutes: ["localhost:3000/auth"],
       },
     }),
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
     FullCalendarModule,
     PaginationModule.forRoot(),
-    ModalModule.forRoot(), // for FullCalendar!
+    ModalModule.forRoot(),
+    BsDatepickerModule.forRoot(), // for FullCalendar!
   ],
   providers: [
     ErrorInterceptorProvider,

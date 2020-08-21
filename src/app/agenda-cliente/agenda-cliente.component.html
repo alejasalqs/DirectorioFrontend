@@ -8,19 +8,31 @@
     <div class="row">
         <div class="col-xl-4 col-sm-12">
             <h2>Agendar cita</h2>
+            <br>
+            <p><strong>Doctor: </strong>{{ this.doctor.Nombre + ' ' + this.doctor.PrimerApellido + ' ' + this.doctor.SegundoApellido }}</p>
+            <br>
+            <p><strong>Correo: </strong>{{ this.doctor.Correo }}</p>
+            <br>
+            <p><strong>Teléfono: </strong>{{ this.doctor.Celular }}</p>
+            <br>
+            <p><strong>Dirección: </strong>{{ this.doctor.DireccionExacta  }}</p>
         </div>
         <div class="col-xl-8 col-sm-12">
             <full-calendar
+                #fullcalendar
+                [timeZone]="options.timeZone"
+                [buttonText]="options.buttonText"
+                [height]="options.height" 
+                handleWindowResize="true"
                 defaultView="timeGridWeek"
-                [plugins]="calendarPlugins"
+                [plugins]="options.plugins"
                 [weekends]="calendarWeekends"
                 [events]="calendarEvents"
+                [header]="options.header"
+                [locales]="options.locales"
+                [locale]="options.locale"
+                [customButtons]="options.customButtons"
                 [deepChangeDetection]="true"
-                [header]="{
-                    left: 'prev,next today',
-                    center: 'title',
-                    right: ''
-                }"
                 (eventClick)="eventClick($event.event,template)"
                 ></full-calendar>
         </div>

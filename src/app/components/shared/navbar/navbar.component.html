@@ -12,6 +12,7 @@
             ><img
               src="../../../../assets/img/logo-grupo-argus-productos.png"
               alt="Logo de la empresa"
+              style="height: 70px;!important width: 1000px;!important"
           /></a>
         </div>
 
@@ -36,8 +37,8 @@
           style="padding-top: 20px;"
           *ngIf="!this.auth.loggedIn()"
         >
-          <a [routerLink]="['/login']" class="button ripple-effect"
-            >Iniciar sesión</a
+          <button [routerLink]="['/login']" class="button ripple-effect"
+            >Iniciar sesión</button
           >
         </div>
         <!--  User Notifications / End -->
@@ -49,7 +50,7 @@
             <div class="header-notifications-trigger">
               <a
                 ><div class="user-avatar status-online">
-                  <img [src]="foto" alt="" /></div
+                  <img [src]="foto" alt="" height="55" width="55"/></div
               ></a>
             </div>
 
@@ -60,10 +61,11 @@
                 <!-- User Name / Avatar -->
                 <div class="user-details">
                   <div class="user-avatar status-online">
-                    <img [src]="foto" alt="" />
+                    <img [src]="foto" alt="" height="80" width="80"/>
                   </div>
                   <div class="user-name">
-                    {{ this.auth.obtenerDoctorLogeado().Nombre + ' ' +  this.auth.obtenerDoctorLogeado().PrimerApellido }} <span>Doctor</span>
+                    {{ this.auth.obtenerDoctorLogeado().Nombre + ' ' +  this.auth.obtenerDoctorLogeado().PrimerApellido }} 
+                    <span>{{ this.auth.obtenerDoctorLogeado().Titulo }}</span>
                   </div>
                 </div>
               </div>

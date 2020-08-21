@@ -26,11 +26,11 @@
                 }}<span>{{ doctor.Especialidades[0].Descripcion }}</span>
               </h3>
               <ul>
-                <li><div class="star-rating" data-rating="5.0"></div></li>
+                <!--<li><div class="star-rating" data-rating="5.0"></div></li>
                 <li>
                   <img class="flag" src="images/flags/de.svg" alt="" /> Germany
                 </li>
-                <li><div class="verified-badge-with-title">Verified</div></li>
+                <li><div class="verified-badge-with-title">Verified</div></li>-->
               </ul>
             </div>
           </div>
@@ -138,13 +138,16 @@
             <strong>22</strong><span>Rehired</span>
           </div>
         </div>
+        <br>
 
         <!-- Button -->
         <button
         [routerLink] = "['/agenda', this.doctor.IdDoctor]"
-        class="button ripple-effect"
+        class="button big ripple-effect"
           >Agendar Cita <i class="far fa-calendar-alt"></i
         ></button>
+        <br>
+        <br>
 
         <!-- Widget -->
         <div class="sidebar-widget">

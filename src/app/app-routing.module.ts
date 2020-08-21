@@ -28,7 +28,7 @@ const routes: Routes = [
   {
     path: "doctores",
     component: ListadoDoctoresComponent,
-    resolve: { doctores: DoctorListaResolver },
+   resolve: { doctores: DoctorListaResolver },
   },
   {
     path: "doctor/:id",
