@@ -29,37 +29,37 @@
                     <h5>Seleccionar días laborales</h5>
                     <div>
                       <div class="checkbox">
-                        <input type="checkbox" id="lunes" (click)="checkCheckBoxvalue(dias[0])" [checked]="dias[0].Trabaja" [(ngModel)]="dias[0].Trabaja">
+                        <input type="checkbox" id="lunes" (click)="checkCheckBoxvalue(dias[0])" [checked]="dias[0].Trabajo" [(ngModel)]="dias[0].Trabajo">
                         <label for="lunes"><span class="checkbox-icon"></span> Lunes</label>
                       </div>
                         <br>
                         <div class="checkbox">
-                          <input type="checkbox" id="martes" (click)="checkCheckBoxvalue(dias[1])" [checked]="dias[1].Trabaja" [(ngModel)]="dias[1].Trabaja">
+                          <input type="checkbox" id="martes" (click)="checkCheckBoxvalue(dias[1])" [checked]="dias[1].Trabajo" [(ngModel)]="dias[1].Trabajo">
                           <label for="martes"><span class="checkbox-icon"></span> Martes</label>
                         </div>
                         <br>
                         <div class="checkbox">
-                          <input type="checkbox" id="miercoles" (click)="checkCheckBoxvalue(dias[2])" [checked]="dias[2].Trabaja" [(ngModel)]="dias[2].Trabaja">
+                          <input type="checkbox" id="miercoles" (click)="checkCheckBoxvalue(dias[2])" [checked]="dias[2].Trabajo" [(ngModel)]="dias[2].Trabajo">
                           <label for="miercoles"><span class="checkbox-icon"></span> Miercoles</label>
                         </div>
                         <br>
                         <div class="checkbox">
-                          <input type="checkbox" id="jueves" (click)="checkCheckBoxvalue(dias[3])" [checked]="dias[3].Trabaja" [(ngModel)]="dias[3].Trabaja">
+                          <input type="checkbox" id="jueves" (click)="checkCheckBoxvalue(dias[3])" [checked]="dias[3].Trabajo" [(ngModel)]="dias[3].Trabajo">
                           <label for="jueves"><span class="checkbox-icon"></span> Jueves</label>
                         </div>
                         <br>
                         <div class="checkbox">
-                          <input type="checkbox" id="viernes" (click)="checkCheckBoxvalue(dias[4])" (click)="checkCheckBoxvalue(dias[0])" [checked]="dias[4].Trabaja" [(ngModel)]="dias[4].Trabaja">
+                          <input type="checkbox" id="viernes" (click)="checkCheckBoxvalue(dias[4])" (click)="checkCheckBoxvalue(dias[4])" [checked]="dias[4].Trabajo" [(ngModel)]="dias[4].Trabajo">
                           <label for="viernes"><span class="checkbox-icon"></span> Viernes</label>
                         </div>
                         <br>
                         <div class="checkbox">
-                          <input type="checkbox" id="sabado" (click)="checkCheckBoxvalue(dias[5])" [checked]="dias[5].Trabaja" [(ngModel)]="dias[5].Trabaja">
+                          <input type="checkbox" id="sabado" (click)="checkCheckBoxvalue(dias[5])" [checked]="dias[5].Trabajo" [(ngModel)]="dias[5].Trabajo">
                           <label for="sabado"><span class="checkbox-icon"></span> Sábado</label>
                         </div>
                         <br>
                         <div class="checkbox">
-                          <input type="checkbox" id="domingo" (click)="checkCheckBoxvalue(dias[6])" [checked]="dias[6].Trabaja" [(ngModel)]="dias[6].Trabaja">
+                          <input type="checkbox" id="domingo" (click)="checkCheckBoxvalue(dias[6])" [checked]="dias[6].Trabajo" [(ngModel)]="dias[6].Trabajo">
                           <label for="domingo"><span class="checkbox-icon"></span> Domingo</label>
                         </div>
                     </div>
@@ -96,12 +96,12 @@
                       <div class="col-sm-4">
                         <select class="form-control" name="horaInicio" [(ngModel)]="config.Hora"
                         >
-                          <option value="7:00">7:00</option>
-                          <option value="7:30">7:30</option>
-                          <option value="8:00">8:00</option>
-                          <option value="8:30">8:30</option>
-                          <option value="9:00">9:00</option>
-                          <option value="9:30">9:30</option>
+                          <option value="07:00">7:00</option>
+                          <option value="07:30">7:30</option>
+                          <option value="08:00">8:00</option>
+                          <option value="08:30">8:30</option>
+                          <option value="09:00">9:00</option>
+                          <option value="09:30">9:30</option>
                           <option value="10:00">10:00</option>
                           <option value="10:30">10:30</option>
                           <option value="11:00">11:00</option>

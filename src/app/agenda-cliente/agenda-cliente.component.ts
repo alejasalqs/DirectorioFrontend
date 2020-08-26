@@ -75,6 +75,17 @@ export class AgendaClienteComponent implements OnInit {
     })
   }
 
+  ngAfterViewChecked() {
+    this.agregarClasesResponsive();
+  }
+
+  agregarClasesResponsive(){
+    let agregarClases = ["col-sm-12","col-lg-6","col-md-6","pt-2","d-flex", "justify-content-center"]
+    document.getElementsByClassName('fc-header-toolbar')[0].classList.add("row");
+    document.getElementsByClassName('fc-left')[0].classList.add(...agregarClases);
+    document.getElementsByClassName('fc-center')[0].classList.add(...agregarClases);
+  }
+
   cargarEventos(id) {
     this.agendaService.obtenerMetodosAgenda(id).subscribe(
       (data: any) => {

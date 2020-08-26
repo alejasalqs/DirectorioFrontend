@@ -20,28 +20,26 @@
       </button>
       <br />
       <hr />
-      <div class="row">
-        <div class="col-xl-12 col-md-12 col-sm-12 col-xs-12">
-          <full-calendar
-          #fullcalendar
-          displayEventEnd="true"
-          [timeZone]="options.timeZone"
-          [buttonText]="options.buttonText"
-          [contentHeight]="options.contentHeight"
-          [height]="options.height"
-          [handleWindowResize]="options.handleWindowResize"
-          [defaultView]="dayGridMonth"
-          [plugins]="options.plugins"
-          [weekends]="calendarWeekends"
-          [events]="calendarEvents"
-          [header]="options.header"
-          [locales]="options.locales"
-          [locale]="options.locale"
-          [customButtons]="options.customButtons"
-          [deepChangeDetection]="true"
-          (eventClick)="eventClick($event.event,template)"
-      ></full-calendar>
-        </div>
+      <div class="calendar-container">
+        <full-calendar
+        #fullcalendar
+        displayEventEnd="true"
+        [timeZone]="options.timeZone"
+        [buttonText]="options.buttonText"
+        [contentHeight]="options.contentHeight"
+        [height]="options.height"
+        [handleWindowResize]="options.handleWindowResize"
+        [defaultView]="dayGridMonth"
+        [plugins]="options.plugins"
+        [weekends]="calendarWeekends"
+        [events]="calendarEvents"
+        [header]="options.header"
+        [locales]="options.locales"
+        [locale]="options.locale"
+        [customButtons]="options.customButtons"
+        [deepChangeDetection]="true"
+        (eventClick)="eventClick($event.event,template)"
+    ></full-calendar>
       </div>
     </div>
   </div>

@@ -63,7 +63,7 @@ export class AgendaComponent implements OnInit {
       locales: [ esLocale, frLocale ],
       locale: 'es',
       timeZone: 'America/Costa_Rica',
-      height: '100%',
+      height: '100vh',
       contentHeight: 800,
       windowResize: (arg) => {
         console.log('The calendar has adjusted to a window resize. Current view: ' + arg);
@@ -76,20 +76,32 @@ export class AgendaComponent implements OnInit {
     this.cargarEventos();
   }
 
+  ngAfterViewChecked() {
+    this.agregarClasesResponsive();
+  }
+
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     this.innerWidth = window.innerWidth;
-    console.log(this.innerWidth);
-    console.log(this.fullcalendar.contentHeight);
-    this.fullcalendar.getApi().updateSize();
-    this.fullcalendar.getApi().render();
+    if(this.innerWidth <= 600 ) {
+      console.log(this.innerWidth);
+      this.AjustarCalendarioVistaMovil();
+      this.fullcalendar.getApi().updateSize();
+      this.fullcalendar.getApi().render();
+    }
   }
+
+  //para ajustar la visualizacion del calendario a la vista movil
+  AjustarCalendarioVistaMovil() {
+    console.log(navigator.userAgent)
+    console.log('es movil')
+};
 
   cargarEventos() {
     this.agendaService.obtenerMetodosAgenda(this.doctor.IdDoctor).subscribe(
       (data: any) => {
         this.darFormatoFechaDDMMYYYY(data.eventos);
-        for (let evento of data.eventos) {
+        for (let evento of data.eventos) { 
           evento.start = evento.start = new Date(evento.start);
           evento.end = evento.end = new Date(evento.end);
           evento.timezone = "UTC";
@@ -98,6 +110,14 @@ export class AgendaComponent implements OnInit {
         console.log(this.calendarEvents);
       }
     );
+  }
+
+  agregarClasesResponsive(){
+    let agregarClases = ["col-sm-12","col-lg-4","col-md-4","pt-2","d-flex", "justify-content-center"]
+    document.getElementsByClassName('fc-header-toolbar')[0].classList.add("row");
+    document.getElementsByClassName('fc-left')[0].classList.add(...agregarClases);
+    document.getElementsByClassName('fc-center')[0].classList.add(...agregarClases);
+    document.getElementsByClassName('fc-right')[0].classList.add(...agregarClases);
   }
 
   toggleWeekends() {

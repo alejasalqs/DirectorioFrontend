@@ -16,20 +16,20 @@ export class ConfigurarAgendaComponent implements OnInit {
   };
 
   dias: any = [
-    {Dia: 'Lunes', Trabaja: false},
-    {Dia: 'Martes', Trabaja: false},
-    {Dia: 'Miércoles', Trabaja: false},
-    {Dia: 'Jueves', Trabaja: false},
-    {Dia: 'Viernes', Trabaja: false},
-    {Dia: 'Sábado', Trabaja: false},
-    {Dia: 'Domingo', Trabaja: false},
+    {Dia: 'Lunes', Trabajo: false, IdDoctor: this.auth.obtenerDoctorLogeado().IdDoctor},
+    {Dia: 'Martes', Trabajo: false, IdDoctor: this.auth.obtenerDoctorLogeado().IdDoctor},
+    {Dia: 'Miércoles', Trabajo: false, IdDoctor: this.auth.obtenerDoctorLogeado().IdDoctor},
+    {Dia: 'Jueves', Trabajo: false, IdDoctor: this.auth.obtenerDoctorLogeado().IdDoctor},
+    {Dia: 'Viernes', Trabajo: false, IdDoctor: this.auth.obtenerDoctorLogeado().IdDoctor},
+    {Dia: 'Sábado', Trabajo: false, IdDoctor: this.auth.obtenerDoctorLogeado().IdDoctor},
+    {Dia: 'Domingo', Trabajo: false, IdDoctor: this.auth.obtenerDoctorLogeado().IdDoctor},
   ];
 
   ngOnInit() {
   }
 
   checkCheckBoxvalue(dia){
-    dia.Trabaja = !dia.Trabaja;
+    dia.Trabajo = !dia.Trabajo;
   }
 
   async configurar() {
@@ -43,13 +43,16 @@ export class ConfigurarAgendaComponent implements OnInit {
 
   configurarDias(){
     console.log(this.dias);  
+    this.agendaService.configurarDiasLaborales(this.dias).subscribe(resp => {
+      this.alert.success('Operación realizada con éxito');
+    }, err => this.alert.error('Hubo un error al realizar la operación'))
   }
 
   async darFormatoFechaHora(fecha?: any,hora?: any) {
     if (hora) {
-      return `${fecha.month}/${fecha.day}/${fecha.year} ${hora}:00.000`
+      return `${fecha.year}/${fecha.month}/${fecha.day} ${hora}`
     } else {
-      return `${fecha.month}/${fecha.day}/${fecha.year}`
+      return `${fecha.year}/${fecha.month}/${fecha.day}`
     }
   }
 }

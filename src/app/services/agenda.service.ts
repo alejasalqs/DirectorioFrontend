@@ -29,4 +29,9 @@ export class AgendaService {
       params: config
     });
   }
+
+
+  configurarDiasLaborales(dias: any) {
+    return this.http.post(this.baseURL + "/dias", dias);
+  }
 }
