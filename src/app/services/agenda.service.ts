@@ -15,6 +15,10 @@ export class AgendaService {
     });
   }
 
+  obtenerDetalleEvento(id){
+    return this.http.get(this.baseURL + "detalle/" + id);
+  }
+
   crearEventoAgenda(evento) {
     return this.http.post(this.baseURL, evento);
   }

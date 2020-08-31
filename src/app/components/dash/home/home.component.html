@@ -2,6 +2,7 @@
   <div class="dashboard-content-inner">
     <!-- Dashboard Headline -->
     <div class="dashboard-headline">
+      <small class="text-muted">Última actividad: {{ this.auth.obtenerDoctorLogeado().FechaUltimaActividad | date:'short':'UTC' }}</small>
       <h3>Bienvenido, {{ this.auth.obtenerDoctorLogeado().Nombre }}</h3>
       <span>Un gusto servirte de nuevo!</span>
 

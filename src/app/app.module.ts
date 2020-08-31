@@ -83,7 +83,12 @@ export function tokenGetter() {
       },
     }),
     BrowserAnimationsModule, // required animations module
-    ToastrModule.forRoot(), // ToastrModule added
+    ToastrModule.forRoot({
+      timeOut: 10000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+      progressBar: true,
+    }), // ToastrModule added
     FullCalendarModule,
     PaginationModule.forRoot(),
     ModalModule.forRoot(),

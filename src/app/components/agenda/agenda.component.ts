@@ -30,6 +30,7 @@ export class AgendaComponent implements OnInit {
   calendarEvents: EventInput[] = [];
   doctor: Doctor;
   selecteIDAgenda = 0;
+  detalleEvento = {};
   calendarApi: Calendar;
   public innerWidth: any
 
@@ -129,8 +130,11 @@ export class AgendaComponent implements OnInit {
   }
 
   eventClick(arg,template) {
-    this. selecteIDAgenda = arg.id;
-    const modalRef = this.modalService.open(template);
+    this.detalleEvento = {};
+    this.agendaService.obtenerDetalleEvento(arg.id).subscribe((resp: any) => {
+      this.detalleEvento = resp.detalle;
+      const modalRef = this.modalService.open(template);
+    }, err => this.toastr.error('Error al obtener los datos','Error'))
   }
 
   agendar(evento, modal){
@@ -156,6 +160,10 @@ export class AgendaComponent implements OnInit {
     } catch (err) {
         console.log(err);
     }
+  }
+
+  cerrarModal(modal){
+    modal.dismiss('Cross click')
   }
 }
 

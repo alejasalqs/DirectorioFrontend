@@ -47,63 +47,51 @@
 
 <ng-template #template let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Agendar cita</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+    <h4 class="modal-title" id="modal-basic-title">Información Cita: {{ detalleEvento.IdAgenda }}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="cerrarModal(modal)">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
     <form>
-      <div class="row">
+      <div class="row pt-2">
         <div class="col-6">
-          <div class="form-group">
-            <label>Nombre:</label>
-            <div class="input-group">
-              <input id="NombreEvento" class="form-control" name="NombreEvento" [(ngModel)]="modelEvento.Nombre">
-            </div>
-          </div>
+          <span><strong>Nombre: </strong>{{ detalleEvento.Nombre }}</span>
         </div>
         <div class="col-6">
-          <div class="form-group">
-            <label>Apellidos:</label>
-            <div class="input-group">
-              <input id="NombreEvento" class="form-control" name="NombreEvento" [(ngModel)]="modelEvento.Apellidos">
-            </div>
-          </div>
+          <span><strong>Cédula: </strong>{{ detalleEvento.cedula }}</span>
         </div>  
       </div>
-      <div class="row">
+      <div class="row pt-2">
         <div class="col">
-          <label>Cédula</label>
-          <div class="input-group">
-            <input id="backgroundColor" [(ngModel)]="modelEvento.Cedula" class="form-control" name="backgroundColor">
-          </div>
+          <span><strong>Correo: </strong>{{ detalleEvento.correo }}</span>
         </div>
         <div class="col">
-          <label>Correo electrónico</label>
-          <div class="input-group">
-            <input id="borderColor" class="form-control" [(ngModel)]="modelEvento.Correo" name="borderColor">
-          </div>
-        </div>
-        <div class="col">
-          <label>Teléfono</label>
-          <div class="input-group">
-            <input id="textColor" class="form-control" [(ngModel)]="modelEvento.Celular" name="textColor">
-          </div>
+          <span><strong>Teléfono: </strong>{{ detalleEvento.celular }}</span>
         </div>
       </div>
-      <div class="row">
+      <div class="row pt-2">
         <div class="col">
-          <label>Motivo cita</label>
-          <div class="input-group">
-            <textarea id="textColor" class="form-control" [(ngModel)]="modelEvento.MotivoCita" name="textColor"></textarea>
-          </div>
+          <span><strong>Motivo Cita: </strong>{{ detalleEvento.motivocita }}</span>
+        </div>
+      </div>
+      <div class="row pt-2">
+        <div class="col">
+          <span><strong>Inicio: </strong>{{ detalleEvento.start | date:'short':'UTC' }}</span>
+        </div>
+        <div class="col">
+          <span><strong>Final: </strong>{{ detalleEvento.endDate | date:'short':'UTC' }}</span>
+        </div>
+      </div>
+      <div class="row pt-2">
+        <div class="col">
+          <span><strong>Doctor: </strong>{{ detalleEvento.Doctor }}</span>
         </div>
       </div>
       <hr>
-      <div class="row">
+      <div class="row pt-2">
         <div class="col-12">
-          <button class="btn btn-primary btn-block" (click)="agendar(modelEvento,modal,$event.event)">Agendar</button>
+          <button class="btn btn-primary btn-block">Agendar</button>
         </div>
       </div>
     </form>
