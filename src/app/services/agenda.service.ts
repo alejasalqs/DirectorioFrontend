@@ -28,14 +28,14 @@ export class AgendaService {
   }
 
   llenarDatos(config: any) {
-    return this.http.post(this.baseURL + 'llenardatos', {
-      headers: {'x-token': localStorage.getItem('token')},
-      params: config
-    });
+    return this.http.post(this.baseURL + 'llenardatos', config);
   }
-
 
   configurarDiasLaborales(dias: any) {
     return this.http.post(this.baseURL + "/dias", dias);
+  }
+
+  cancelarCita(id: string | number) {
+    return this.http.delete(this.baseURL + id);
   }
 }

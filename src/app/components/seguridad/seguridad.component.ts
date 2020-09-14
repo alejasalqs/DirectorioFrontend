@@ -10,6 +10,7 @@ import { ToastrAlertService } from 'src/app/services/toastr-alert.service';
 export class SeguridadComponent implements OnInit {
   contrasena: string = '';
   nuevaContrasena: string = '';
+  repetirNuevaContrasena: string= '';
 
   constructor(public auth: AuthService, public toastr: ToastrAlertService) { }
 
@@ -17,7 +18,10 @@ export class SeguridadComponent implements OnInit {
   }
 
   cambiar() {
-    if(this.nuevaContrasena === '' || this.contrasena === '') return;
+    if(this.nuevaContrasena === '' || this.contrasena === '' || this.repetirNuevaContrasena === '') { this.toastr.error('Por favor llenar todos los campos'); return;};
+
+    if (this.nuevaContrasena !== this.repetirNuevaContrasena){ this.toastr.error('Las contraseñas son diferentes'); return;}
+
     if(this.nuevaContrasena !== this.contrasena){
       this.auth.cambiarContrasena({ 
         Contrasena: this.contrasena,

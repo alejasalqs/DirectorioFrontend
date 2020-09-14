@@ -44,9 +44,9 @@ export class MiPerfilComponent implements OnInit {
   }
 
   actualizarDoctor(doctor: Doctor) {
-    let {Nombre, PrimerApellido, SegundoApellido, Correo, TelefonoOficina, Celular, FechaNacimiento, WebUrl, SobreMi, Locacion, Titulo, Genero} = doctor;
+    let {Nombre, PrimerApellido, SegundoApellido, Correo, TelefonoOficina, Celular, FechaNacimiento, WebURL, SobreMi, Locacion, Titulo, Genero} = doctor;
     console.log(FechaNacimiento)
-    this.doctoresService.editarDoctor({Nombre, PrimerApellido, SegundoApellido, Correo, TelefonoOficina, Celular, FechaNacimiento, WebUrl, SobreMi, Locacion, Titulo, Genero}, this.doctor.IdDoctor)
+    this.doctoresService.editarDoctor({Nombre, PrimerApellido, SegundoApellido, Correo, TelefonoOficina, Celular, FechaNacimiento, WebURL, SobreMi, Locacion, Titulo, Genero}, this.doctor.IdDoctor)
     .subscribe((data:any) => {
         this.toastr.success('','Se ha actualizado el registro correctamente');
         this.auth.sobreescribirDoctorLogeado(this.doctor);

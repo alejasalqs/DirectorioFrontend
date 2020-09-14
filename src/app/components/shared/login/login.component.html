@@ -38,7 +38,7 @@
           </div>
 
           <!-- Form -->
-          <form #loginForm="ngForm" (ngSubmit)="login()" id="login-form">
+          <form #loginForm="ngForm" ngNativeValidate (ngSubmit)="login()" id="login-form">
             <div class="input-with-icon-left">
               <i class="far fa-envelope"></i>
               <input

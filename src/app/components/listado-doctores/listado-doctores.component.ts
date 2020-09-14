@@ -47,7 +47,6 @@ export class ListadoDoctoresComponent implements OnInit {
   cargarSelect() {
     this.doctoresService.obtenerNombreDoctores().subscribe((resp:any) => {
       this.nombresSelect = resp.doctores;
-      console.log(this.nombresSelect);
     }, error => console.error(error))
   }
 }

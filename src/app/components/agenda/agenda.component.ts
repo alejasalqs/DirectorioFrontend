@@ -11,6 +11,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { ToastrAlertService } from 'src/app/services/toastr-alert.service';
 import { esLocale, frLocale } from 'ngx-bootstrap/chronos';
 import { EventEmitter } from 'protractor';
+import { RecordatoriosService } from 'src/app/services/recordatorios.service';
 //import bootstrapPlugin from '@fullcalendar/bootstrap';
 
 @Component({
@@ -19,11 +20,15 @@ import { EventEmitter } from 'protractor';
   styleUrls: ["./agenda.component.css"],
 })
 export class AgendaComponent implements OnInit {
-  constructor(private modalService: NgbModal,private agendaService: AgendaService, private authService: AuthService, private toastr: ToastrAlertService) {
+  constructor(private modalService: NgbModal,
+              private agendaService: AgendaService, 
+              private authService: AuthService, 
+              private toastr: ToastrAlertService,
+              private recordatorioService: RecordatoriosService) {
   }
 
   @ViewChild('fullcalendar',{ static: false }) fullcalendar: FullCalendarComponent;
-  calendarComponent: FullCalendarComponent;
+
   modelEvento = {};
   options: any;
   calendarWeekends = true;
@@ -164,6 +169,21 @@ export class AgendaComponent implements OnInit {
 
   cerrarModal(modal){
     modal.dismiss('Cross click')
+  }
+
+  cancelarCita(id: string){
+    this.agendaService.cancelarCita(id).subscribe(resp => {
+      this.toastr.success('Se ha cancelado la cita');
+      this.fullcalendar.getApi().getEventById(id).remove();
+    })
+  }
+
+  enviarRecordatorio(cita: any) {
+    console.log(cita);
+    this.recordatorioService.enviarRecordatorio(cita).subscribe((resp: any) => {
+      console.log(resp)
+      this.toastr.success(resp.mensaje);
+    })
   }
 }
 

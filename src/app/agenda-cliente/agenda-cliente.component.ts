@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { EventInput } from '@fullcalendar/core';
 import { Doctor } from 'src/models/Doctor';
 import dayGridPlugin from "@fullcalendar/daygrid";
@@ -27,6 +27,8 @@ export class AgendaClienteComponent implements OnInit {
               private toastr: ToastrAlertService,
               private doctoresService: DoctoresService
               ) { }
+
+  @ViewChild('fullcalendar',{ static: false }) fullcalendar: FullCalendarComponent;
 
   modelEvento = {};
   options: any;
@@ -108,9 +110,12 @@ export class AgendaClienteComponent implements OnInit {
   agendar(evento, modal){
     evento.IdDoctor = this.doctor.IdDoctor;
     this.agendaService.actualizarEvento(evento,this.selecteIDAgenda).subscribe( (data: any) => {
+      this.fullcalendar.getApi().getEventById(this.selecteIDAgenda.toString()).remove();
       this.selecteIDAgenda = 0;
       modal.dismiss();
+      this.modelEvento = {};
       this.toastr.success('Esté atento a su correo electrónico o número telefónico para saber más detalles','Se ha agendado su cita correctamente')
+      
     },
     error => this.toastr.error(error,'Error al momento de realizar la operación'))
   }

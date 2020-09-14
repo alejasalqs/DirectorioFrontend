@@ -15,7 +15,7 @@ export class Doctor {
     public FechaNacimiento?: Date,
     public Celular?: string,
     public Locacion?: string,
-    public WebUrl?: string,
+    public WebURL?: string,
     public Estado?: boolean,
     public Foto?: string,
     public Titulo?: string,
